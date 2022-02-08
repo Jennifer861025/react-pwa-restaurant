@@ -1,9 +1,14 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 import styles from './styles.module.scss';
+import { getToken } from '../../api';
 
-function Home() {
+const Home = () => {
+  useEffect(() => {
+    getToken();
+  }, []);
+
   return (
     <Fragment>
       <Helmet>
@@ -12,10 +17,10 @@ function Home() {
         <meta name="description" content="首頁" />
       </Helmet>
       <div className={styles.screen}>
-        <h1>good morning</h1>
+        <h1>Restaurant</h1>
       </div>
     </Fragment>
   );
-}
+};
 
 export default Home;
