@@ -6,4 +6,5 @@ export default {
   noReserved: '/noReserved',
   waiting: '/waiting',
   menu: '/menu',
+  pricePlan: '/pricePlan',
 };

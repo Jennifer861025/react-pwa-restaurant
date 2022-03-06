@@ -16,6 +16,7 @@ import TableNumInfo from '../layouts/TableNumInfo';
 import NoReserved from '../layouts/NoReserved';
 import Waiting from '../layouts/Waiting';
 import Menu from '../layouts/Menu';
+import PricePlan from '../layouts/PricePlan';
 
 const Routes = () => {
   const [show, setShow] = useState(false);
@@ -68,6 +69,8 @@ const Routes = () => {
           <Route exact path={path.waiting} component={Waiting} />
           {/* 菜單 */}
           <Route exact path={path.menu} component={Menu} />
+          {/* 價格方案 */}
+          <Route exact path={path.pricePlan} component={PricePlan} />
         </Switch>
       </Router>
     </StoreProvider>
