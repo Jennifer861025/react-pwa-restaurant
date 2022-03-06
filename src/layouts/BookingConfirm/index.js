@@ -22,7 +22,7 @@ const BookingConfirm = () => {
           </div>
           <div className={styles.questionTitle}>今日是否有訂位？</div>
           <div className={styles.buttonArea}>
-            <Link to={path.reserved} className={styles.button}>
+            <Link to={path.reservationInfo} className={styles.button}>
               已訂位
             </Link>
             <Link to={path.noReserved} className={styles.button}>

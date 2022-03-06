@@ -11,18 +11,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: $cp-p-size;
+  font-size: 24px;
   color: $cp-text-color;
   background: $cp-main-bg-color;
 }
 .incTitle {
-  font-size: $cp-h1-size;
-  font-weight: bold;
-  color: $cp-text-blod-color;
   margin-bottom: $cp-phone-main-spcing;
 }
 .imgArea {
-  margin-bottom: $cp-phone-main-spcing;
+  margin-bottom: $cp-phone-bar-spacing;
 }
 .questionTitle {
   margin-bottom: $cp-phone-main-spcing;
@@ -31,10 +28,10 @@
   display: flex;
   flex-direction: column;
   .button {
-    width: 300px;
+    width: 320px;
     height: 60px;
     border-radius: 10px;
-    color: $cp-btn-text-color;
+    color: $cp-text-color;
     background: $cp-btn-color;
     display: flex;
     justify-content: center;

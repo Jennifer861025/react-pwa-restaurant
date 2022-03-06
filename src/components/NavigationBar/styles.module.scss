@@ -1,0 +1,55 @@
+@import '../../styles/color.scss';
+@import '../../styles/font.scss';
+@import '../../styles/spacing.scss';
+
+.container {
+  width: 100vw;
+  position: fixed;
+  z-index: 10;
+}
+.phoneTopSpace {
+  width: 100vw;
+  height: $cp-phone-top-phone-spacing;
+}
+.navigationBar {
+  width: 100vw;
+  height: $cp-phone-bar-spacing;
+  font-size: $cp-h1-size;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #000;
+}
+.navigationBar_side {
+  width: 33.3%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  &:nth-child(1) {
+    padding-left: $cp-phone-secondary-spacing;
+  }
+  &:nth-child(2) {
+    justify-content: center;
+  }
+  &:nth-child(3) {
+    justify-content: flex-end;
+    padding-right: $cp-phone-secondary-spacing;
+  }
+}
+
+.leftSide_icon {
+  font-size: $cp-phone-secondary-spacing;
+  transform: rotate(-180deg);
+  color: #f2f2f2;
+}
+.leftSide_iconHide {
+  display: none;
+}
+
+.rightSide_icon {
+    font-size: $cp-phone-secondary-spacing;
+    color: #000;
+  }
+  .rightSide_iconHide {
+    display: none;
+  }

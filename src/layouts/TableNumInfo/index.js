@@ -1,26 +1,22 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import styles from './styles.module.scss';
-import path from '../../utils/path';
+// import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 
-const NoReserved = () => {
+const TableNumInfo = () => {
   return (
     <Fragment>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>未訂位-1</title>
-        <meta name="description" content="未訂位-1" />
+        <title>桌號資訊</title>
+        <meta name="description" content="桌號資訊" />
       </Helmet>
       <div className={styles.screen}>
-        <NavigationBar
-          title={'登記候位'}
-          link={path.bookingConfirm}
-          linkFlag={true}
-        />
+        <NavigationBar title={'桌號資訊'} linkFlag={false} />
         <div className={styles.screenContent}></div>
       </div>
     </Fragment>
   );
 };
-export default NoReserved;
+export default TableNumInfo;

@@ -11,7 +11,8 @@ import { onMessageListener } from '../api';
 
 import HomePage from '../layouts/Home';
 import BookingConfirmPage from '../layouts/BookingConfirm';
-import Reserved from '../layouts/Reserved';
+import ReservationInfo from '../layouts/ReservationInfo';
+import TableNumInfo from '../layouts/TableNumInfo';
 import NoReserved from '../layouts/NoReserved';
 
 const Routes = () => {
@@ -51,8 +52,14 @@ const Routes = () => {
             path={path.bookingConfirm}
             component={BookingConfirmPage}
           />
-          {/* 已訂位-1 */}
-          <Route exact path={path.reserved} component={Reserved} />
+          {/* 訂位資訊 */}
+          <Route
+            exact
+            path={path.reservationInfo}
+            component={ReservationInfo}
+          />
+          {/* 桌號資訊 */}
+          <Route exact path={path.tableNumInfo} component={TableNumInfo} />
           {/* 未訂位-1 */}
           <Route exact path={path.noReserved} component={NoReserved} />
         </Switch>
