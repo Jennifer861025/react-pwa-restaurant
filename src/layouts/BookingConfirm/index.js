@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 import logo from '../../assets/image/logo5.png';
 import path from '../../utils/path';
+import Button from '../../components/Button';
 
 const BookingConfirm = () => {
   return (
@@ -23,10 +24,10 @@ const BookingConfirm = () => {
           <div className={styles.questionTitle}>今日是否有訂位？</div>
           <div className={styles.buttonArea}>
             <Link to={path.reservationInfo} className={styles.button}>
-              已訂位
+              <Button title={'已訂位'}></Button>
             </Link>
-            <Link to={path.noReserved} className={styles.button}>
-              現場候位
+            <Link to={path.noReserved}>
+              <Button title={'現場等候'}></Button>
             </Link>
           </div>
         </div>

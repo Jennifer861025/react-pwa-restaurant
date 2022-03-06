@@ -4,4 +4,5 @@ export default {
   reservationInfo: '/reservationInfo',
   tableNumInfo: '/tableNumInfo',
   noReserved: '/noReserved',
+  menu: '/menu',
 };

@@ -46,15 +46,6 @@
 }
 
 .submitBtn {
-  width: $cp-btn-main-width;
-  height: $cp-btn-main-height;
-  border-radius: $cp-btn-border-radius;
-  color: $cp-btn-text-color;
-  background: $cp-btn-color;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 0px;
-  margin-top: $cp-phone-main-margin-top;
+  margin-top: $cp-phone-main-margin-top !important;
   // margin-top: $cp-phone-bar-spacing;
 }

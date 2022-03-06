@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import styles from './styles.module.scss';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
+import Button from '../../components/Button';
 
 const TableNumInfo = () => {
-  const history = useHistory();
+  // const history = useHistory();
   return (
     <Fragment>
       <Helmet>
@@ -23,12 +24,9 @@ const TableNumInfo = () => {
             <div className={styles.tableInfo_number}>12</div>
             <div className={styles.tableInfo_memo}>請稍候</div>
             <div>將由服務人員進行帶位</div>
-            <button
-              className={styles.button}
-              onClick={() => history.push(path.bookingConfirm)}
-            >
-              進入點餐
-            </button>
+            <Link to={path.menu}>
+              <Button title={'進入點餐'} marginTop={true} main={false}></Button>
+            </Link>
           </div>
         </div>
       </div>

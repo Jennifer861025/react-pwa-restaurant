@@ -14,6 +14,7 @@ import BookingConfirmPage from '../layouts/BookingConfirm';
 import ReservationInfo from '../layouts/ReservationInfo';
 import TableNumInfo from '../layouts/TableNumInfo';
 import NoReserved from '../layouts/NoReserved';
+import Menu from '../layouts/Menu';
 
 const Routes = () => {
   const [show, setShow] = useState(false);
@@ -62,6 +63,8 @@ const Routes = () => {
           <Route exact path={path.tableNumInfo} component={TableNumInfo} />
           {/* 未訂位-1 */}
           <Route exact path={path.noReserved} component={NoReserved} />
+          {/* 菜單 */}
+          <Route exact path={path.menu} component={Menu} />
         </Switch>
       </Router>
     </StoreProvider>

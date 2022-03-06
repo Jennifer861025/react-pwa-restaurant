@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 
 import styles from './styles.module.scss';
 import NavigationBar from '../../components/NavigationBar';
+import Button from '../../components/Button';
 import path from '../../utils/path';
 import { useHistory } from 'react-router';
 
@@ -58,9 +59,7 @@ const ReservationInfo = () => {
                 }}
               />
             </div>
-            <button className={styles.submitBtn} type="submit">
-              送出
-            </button>
+            <Button type="submit" title={'送出'} marginTop={true}></Button>
           </form>
         </div>
       </div>
