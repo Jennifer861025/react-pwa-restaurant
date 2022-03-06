@@ -9,36 +9,55 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  font-size: 24px;
+  font-size: $cp-p-size;
   color: $cp-text-color;
   background: $cp-main-bg-color;
+  padding-top: $cp-phone-full-bar-spacing;
 }
 .incTitle {
+  font-size: $cp-h1-size;
+  font-weight: bold;
   margin-bottom: $cp-phone-main-spcing;
+  margin-top: $cp-phone-main-margin-top;
 }
-.imgArea {
-  margin-bottom: $cp-phone-bar-spacing;
-}
-.questionTitle {
-  margin-bottom: $cp-phone-main-spcing;
-}
-.buttonArea {
+.tableInfoArea {
+  width: 325px;
+  height: 500px;
+  background: #fff;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  .button {
-    width: 320px;
-    height: 60px;
-    border-radius: 10px;
-    color: $cp-text-color;
-    background: $cp-btn-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &:nth-child(1) {
-      margin-bottom: $cp-phone-main-spcing !important;
-    }
-  }
+  align-items: center;
+  padding: $cp-phone-main-margin-top 0;
 }
-
+.tableInfo_title{
+  font-size: $cp-h1-size;
+}
+.tableInfo_number{
+  width: 100px;
+  height: 100px;
+  font-size: 48px;
+  border: 5px solid $cp-main-bg-color;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: $cp-phone-main-spcing;
+}
+.tableInfo_memo{
+  margin-bottom: $cp-phone-section-spacing;
+}
+.button {
+  width: $cp-btn-secondary-width;
+  height: $cp-btn-main-height;
+  border-radius: $cp-btn-border-radius;
+  color: $cp-btn-text-color;
+  background: $cp-btn-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  margin-top: $cp-phone-main-margin-top;
+}

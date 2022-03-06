@@ -9,8 +9,8 @@ const NoReserved = () => {
     <Fragment>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>未訂位-1</title>
-        <meta name="description" content="未訂位-1" />
+        <title>登記候位</title>
+        <meta name="description" content="登記候位" />
       </Helmet>
       <div className={styles.screen}>
         <NavigationBar

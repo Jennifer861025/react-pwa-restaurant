@@ -1,5 +1,6 @@
 @import '../../styles/spacing.scss';
 @import '../../styles/color.scss';
+@import '../../styles/font.scss';
 
 .screen {
   height: 100vh;
@@ -8,36 +9,23 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  font-size: 24px;
+  font-size: $cp-p-size;
   color: $cp-text-color;
   background: $cp-main-bg-color;
+  padding-top: $cp-phone-full-bar-spacing;
 }
-.incTitle {
-  margin-bottom: $cp-phone-main-spcing;
-}
-.imgArea {
-  margin-bottom: $cp-phone-bar-spacing;
-}
-.questionTitle {
-  margin-bottom: $cp-phone-main-spcing;
-}
-.buttonArea {
+.button {
+  width: $cp-btn-secondary-width;
+  height: $cp-btn-main-height;
+  border-radius: $cp-btn-border-radius;
+  color: $cp-btn-text-color;
+  background: $cp-btn-color;
   display: flex;
-  flex-direction: column;
-  .button {
-    width: 320px;
-    height: 60px;
-    border-radius: 10px;
-    color: $cp-text-color;
-    background: $cp-btn-color;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &:nth-child(1) {
-      margin-bottom: $cp-phone-main-spcing !important;
-    }
-  }
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  margin-top: $cp-phone-main-margin-top;
 }
 

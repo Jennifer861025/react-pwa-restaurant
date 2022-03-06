@@ -9,7 +9,7 @@ import Notifications from '../components/Notifications/Notifications';
 import ReactNotificationComponent from '../components/Notifications/ReactNotification';
 import { onMessageListener } from '../api';
 
-import HomePage from '../layouts/Home';
+// import HomePage from '../layouts/Home';
 import BookingConfirmPage from '../layouts/BookingConfirm';
 import ReservationInfo from '../layouts/ReservationInfo';
 import TableNumInfo from '../layouts/TableNumInfo';
@@ -44,8 +44,8 @@ const Routes = () => {
       <Notifications />
       <Router>
         <Switch>
-          {/* 首頁 */}
-          <Route exact path={path.home} component={HomePage} />
+          {/* 首頁
+          <Route exact path={path.home} component={HomePage} /> */}
           {/* 確認訂位 */}
           <Route
             exact

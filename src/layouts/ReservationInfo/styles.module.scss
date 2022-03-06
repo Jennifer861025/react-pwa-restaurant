@@ -18,7 +18,7 @@
   padding-top: $cp-phone-full-bar-spacing;
 }
 .top {
-  margin-top: 49px;
+  margin-top: $cp-phone-main-margin-top;
 }
 .incTitle {
   font-weight: bold;
@@ -46,15 +46,15 @@
 }
 
 .submitBtn {
-  width: 300px;
-  height: 60px;
-  border-radius: 10px;
+  width: $cp-btn-main-width;
+  height: $cp-btn-main-height;
+  border-radius: $cp-btn-border-radius;
   color: $cp-btn-text-color;
   background: $cp-btn-color;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 0px;
-  margin-top: $cp-phone-last-btn-margin-top;
+  margin-top: $cp-phone-main-margin-top;
   // margin-top: $cp-phone-bar-spacing;
 }

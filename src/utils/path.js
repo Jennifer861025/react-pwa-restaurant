@@ -1,6 +1,6 @@
 export default {
-  home: '/',
-  bookingConfirm: '/bookingConfirm',
+  // home: '/',
+  bookingConfirm: '/',
   reservationInfo: '/reservationInfo',
   tableNumInfo: '/tableNumInfo',
   noReserved: '/noReserved',
