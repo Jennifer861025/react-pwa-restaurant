@@ -35,7 +35,10 @@ const Waiting = () => {
             <div>分鐘</div>
           </div>
           <div>請等候系統訊息通知</div>
-          <Link to={path.menu} className={styles.button}>
+          <Link
+            to={{ pathname: path.menu, state: { back: true } }}
+            className={styles.button}
+          >
             <Button title={'查看菜單'} marginTop={true}></Button>
           </Link>
           <Button title={'取消候位'} onClickHandler={cancelHandler}></Button>

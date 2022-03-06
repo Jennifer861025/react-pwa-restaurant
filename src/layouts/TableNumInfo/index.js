@@ -24,7 +24,7 @@ const TableNumInfo = () => {
             <div className={styles.tableInfo_number}>12</div>
             <div className={styles.tableInfo_memo}>請稍候</div>
             <div>將由服務人員進行帶位</div>
-            <Link to={path.menu}>
+            <Link to={{ pathname: path.menu, state: { back: false } }}>
               <Button title={'進入點餐'} marginTop={true} main={false}></Button>
             </Link>
           </div>
