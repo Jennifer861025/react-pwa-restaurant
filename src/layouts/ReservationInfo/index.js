@@ -14,13 +14,14 @@ const ReservationInfo = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (phoneNum == '') {
+    if (phoneNum == null) {
       alert('請輸入電話號碼');
-    } else if (reserveNum == '') {
+    } else if (reserveNum == null) {
       alert('請輸入定位編號');
+    } else {
+      console.log(phoneNum + reserveNum);
+      history.push(path.tableNumInfo);
     }
-    console.log(phoneNum + reserveNum);
-    history.push(path.tableNumInfo);
   };
 
   //TODO:這裡是畫面的開始

@@ -14,6 +14,7 @@ import BookingConfirmPage from '../layouts/BookingConfirm';
 import ReservationInfo from '../layouts/ReservationInfo';
 import TableNumInfo from '../layouts/TableNumInfo';
 import NoReserved from '../layouts/NoReserved';
+import Waiting from '../layouts/Waiting';
 import Menu from '../layouts/Menu';
 
 const Routes = () => {
@@ -61,8 +62,10 @@ const Routes = () => {
           />
           {/* 桌號資訊 */}
           <Route exact path={path.tableNumInfo} component={TableNumInfo} />
-          {/* 未訂位-1 */}
+          {/* 登記候位 */}
           <Route exact path={path.noReserved} component={NoReserved} />
+          {/* 等待叫號*/}
+          <Route exact path={path.waiting} component={Waiting} />
           {/* 菜單 */}
           <Route exact path={path.menu} component={Menu} />
         </Switch>
