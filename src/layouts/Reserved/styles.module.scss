@@ -1,5 +1,6 @@
 @import '../../styles/spacing.scss';
 @import '../../styles/color.scss';
+
 .screen {
   height: 100vh;
 }
@@ -10,5 +11,10 @@
   justify-content: center;
   align-items: center;
   font-size: 24px;
+  color: $cp-text-color;
   background: $cp-main-bg-color;
 }
+.questionTitle {
+  margin-bottom: $cp-phone-main-spcing;
+}
+

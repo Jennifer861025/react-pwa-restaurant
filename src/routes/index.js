@@ -10,6 +10,9 @@ import ReactNotificationComponent from '../components/Notifications/ReactNotific
 import { onMessageListener } from '../api';
 
 import HomePage from '../layouts/Home';
+import BookingConfirmPage from '../layouts/BookingConfirm';
+import Reserved from '../layouts/Reserved';
+import NoReserved from '../layouts/NoReserved';
 
 const Routes = () => {
   const [show, setShow] = useState(false);
@@ -42,6 +45,16 @@ const Routes = () => {
         <Switch>
           {/* 首頁 */}
           <Route exact path={path.home} component={HomePage} />
+          {/* 確認訂位 */}
+          <Route
+            exact
+            path={path.bookingConfirm}
+            component={BookingConfirmPage}
+          />
+          {/* 已訂位-1 */}
+          <Route exact path={path.reserved} component={Reserved} />
+          {/* 未訂位-1 */}
+          <Route exact path={path.noReserved} component={NoReserved} />
         </Switch>
       </Router>
     </StoreProvider>

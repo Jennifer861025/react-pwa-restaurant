@@ -1,28 +1,21 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
-
 import styles from './styles.module.scss';
-import { getToken } from '../../api';
 
-const Home = () => {
-  useEffect(() => {
-    getToken();
-  }, []);
-
+const NoReserved = () => {
   return (
     <Fragment>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>首頁</title>
-        <meta name="description" content="首頁" />
+        <title>未訂位-1</title>
+        <meta name="description" content="未訂位-1" />
       </Helmet>
       <div className={styles.screen}>
         <div className={styles.screenContent}>
-          <h1>Restaurant</h1>
+          <div className={styles.questionTitle}>請輸入電話號碼</div>
         </div>
       </div>
     </Fragment>
   );
 };
-
-export default Home;
+export default NoReserved;
