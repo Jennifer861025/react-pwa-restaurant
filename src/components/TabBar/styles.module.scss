@@ -1,0 +1,50 @@
+@import '../../styles/color.scss';
+@import '../../styles/font.scss';
+@import '../../styles/spacing.scss';
+
+.container {
+  width: 100vw;
+  position: fixed;
+  bottom: 0;
+}
+.tabBar {
+  width: 100vw;
+  height: $cp-phone-bar-spacing;
+  font-size: $cp-p-size;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #000;
+}
+.tabBar_tab {
+  width: 33.3%;
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  color: $cp-text-color;
+  &:hover{
+    color: $cp-text-color;
+    text-decoration: none;
+  }
+  &:active{
+    color: $cp-text-color;
+    text-decoration: none;
+  }
+}
+.tabBar_tab_active {
+  width: 33.3%;
+  height: 100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background: $cp-btn-color;
+  color: $cp-title-color;
+  &:hover{
+    color: $cp-title-color;
+    text-decoration: none;
+  }
+  &:active{
+    color: $cp-title-color;
+    text-decoration: none;
+  }
+}

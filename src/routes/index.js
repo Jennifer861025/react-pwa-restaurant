@@ -17,6 +17,18 @@ import NoReserved from '../layouts/NoReserved';
 import Waiting from '../layouts/Waiting';
 import Menu from '../layouts/Menu';
 import PricePlan from '../layouts/PricePlan';
+import MealHabits from '../layouts/MealHabits';
+import Order from '../layouts/Order';
+import OrderRecord from '../layouts/OrderRecord';
+import Checkout from '../layouts/Checkout';
+import Feedback from '../layouts/Feedback';
+import CheckoutOptions from '../layouts/CheckoutOptions';
+import CouponChoose from '../layouts/CouponChoose';
+import MealFinish from '../layouts/MealFinish';
+import Member from '../layouts/Member';
+import ConsumerRecord from '../layouts/ConsumerRecord';
+import Coupon from '../layouts/Coupon';
+import HabitSetting from '../layouts/HabitSetting';
 
 const Routes = () => {
   const [show, setShow] = useState(false);
@@ -71,6 +83,34 @@ const Routes = () => {
           <Route exact path={path.menu} component={Menu} />
           {/* 價格方案 */}
           <Route exact path={path.pricePlan} component={PricePlan} />
+          {/* 用餐偏好 */}
+          <Route exact path={path.mealHabits} component={MealHabits} />
+          {/* 點餐 */}
+          <Route exact path={path.order} component={Order} />
+          {/* 點餐紀錄 */}
+          <Route exact path={path.orderRecord} component={OrderRecord} />
+          {/* 用餐結帳 */}
+          <Route exact path={path.checkout} component={Checkout} />
+          {/* 用餐意見回饋 */}
+          <Route exact path={path.feedback} component={Feedback} />
+          {/* 結帳選擇 */}
+          <Route
+            exact
+            path={path.checkoutOptions}
+            component={CheckoutOptions}
+          />
+          {/* 優惠券選擇 */}
+          <Route exact path={path.couponChoose} component={CouponChoose} />
+          {/* 用餐結束 */}
+          <Route exact path={path.mealFinish} component={MealFinish} />
+          {/* 會員 */}
+          <Route exact path={path.member} component={Member} />
+          {/* 消費記錄 */}
+          <Route exact path={path.consumerRecord} component={ConsumerRecord} />
+          {/* 優惠券 */}
+          <Route exact path={path.coupon} component={Coupon} />
+          {/* 偏好設定 */}
+          <Route exact path={path.habitSetting} component={HabitSetting} />
         </Switch>
       </Router>
     </StoreProvider>

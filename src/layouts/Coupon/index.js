@@ -4,19 +4,19 @@ import styles from './styles.module.scss';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 
-const PricePlan = () => {
+const Coupon = () => {
   return (
     <Fragment>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>價格方案</title>
-        <meta name="description" content="價格方案" />
+        <title>優惠券</title>
+        <meta name="description" content="優惠券" />
       </Helmet>
       <div className={styles.screen}>
-        <NavigationBar title={'方案'} link={path.menu} linkFlag={true} />
+        <NavigationBar title={'優惠券'} link={path.member} linkFlag={true} />
         <div className={styles.screenContent}></div>
       </div>
     </Fragment>
   );
 };
-export default PricePlan;
+export default Coupon;
