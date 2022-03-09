@@ -7,18 +7,67 @@
 }
 .screenContent {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   font-size: $cp-p-size;
   color: $cp-text-color;
   background: $cp-main-bg-color;
   padding-top: $cp-phone-full-bar-spacing;
 }
-
-.pricePlanImg {
-  margin-top: $cp-phone-main-margin-top;
+.mainContent {
+  margin: $cp-phone-main-margin-top $cp-phone-left-right-margin;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
-
-
+.pricePlanImg {
+  width: 100%;
+  margin-bottom: $cp-phone-main-spcing;
+  img {
+    width: 100%;
+  }
+}
+.optionArea_top {
+  width: 100%;
+  margin-bottom: $cp-phone-main-spcing;
+}
+.optionArea {
+  width: 100%;
+}
+.optionBox {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px $cp-phone-main-spcing;
+  background: $cp-secondary-bg-color;
+  border-radius: 20px;
+}
+.optionBtn {
+  font-size: 32px;
+  color: $cp-btn-color;
+  border: 0px;
+  background: none;
+}
+.optionControl {
+  display: block;
+}
+.optionControl_hide {
+  display: none;
+}
+.option_list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.option {
+  width: 85%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  &:nth-last-child(1) {
+    border-bottom: 0px;
+  }
+}
