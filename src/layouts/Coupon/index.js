@@ -14,7 +14,14 @@ const Coupon = () => {
       </Helmet>
       <div className={styles.screen}>
         <NavigationBar title={'優惠券'} link={path.member} linkFlag={true} />
-        <div className={styles.screenContent}></div>
+        <div className={styles.screenContent}>
+          <div className={styles.couponArea}>
+            <div className={styles.couponBox}>
+              <div className={styles.coupon}>50元折價券</div>
+              <div className={styles.useDate}>使用期限：2022/07/10</div>
+            </div>
+          </div>
+        </div>
       </div>
     </Fragment>
   );

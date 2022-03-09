@@ -9,12 +9,19 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  font-size: $cp-p-size;
+  font-size: $cp-h1-size;
   color: $cp-text-color;
   background: $cp-main-bg-color;
-  padding-top: $cp-phone-full-bar-spacing;
 }
-
-
+.incTitle {
+  font-weight: bold;
+  margin-bottom: $cp-phone-main-spcing;
+}
+.thanksMemo {
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  margin: $cp-phone-main-spcing 0;
+}

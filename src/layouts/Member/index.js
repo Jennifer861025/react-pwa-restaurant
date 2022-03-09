@@ -23,15 +23,15 @@ const Member = () => {
           <div className={styles.logoArea}>
             <img src={logo}></img>
           </div>
-          <div>黃又影 您好！</div>
-          <Link to={path.bookingConfirm}>
+          <div className={styles.member}>黃又影 您好！</div>
+          <Link to={path.consumerRecord} className={styles.button}>
             <Button title={'消費記錄'}></Button>
           </Link>
-          <Link to={path.bookingConfirm}>
+          <Link to={path.coupon} className={styles.button}>
             <Button title={'優惠券票夾'}></Button>
           </Link>
-          <Link to={path.bookingConfirm}>
-            <Button title={'修改偏好設定'}></Button>
+          <Link to={path.habitSetting} className={styles.button}>
+            <Button title={'偏好設定'}></Button>
           </Link>
         </div>
       </div>

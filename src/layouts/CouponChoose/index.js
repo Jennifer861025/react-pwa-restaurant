@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import styles from './styles.module.scss';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
+import Button from '../../components/Button';
 
 const CouponChoose = () => {
   return (
@@ -18,7 +19,15 @@ const CouponChoose = () => {
           link={path.checkoutOptions}
           linkFlag={true}
         />
-        <div className={styles.screenContent}></div>
+        <div className={styles.screenContent}>
+          <div className={styles.couponArea}>
+            <div className={styles.couponBox}>
+              <div className={styles.coupon}>50元折價券</div>
+              <div className={styles.useDate}>使用期限：2022/07/10</div>
+            </div>
+          </div>
+          <Button title="使用優惠券"></Button>
+        </div>
       </div>
     </Fragment>
   );

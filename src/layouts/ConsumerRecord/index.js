@@ -5,6 +5,9 @@ import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 
 const ConsumerRecord = () => {
+  const a = '3/12';
+  const b = 499;
+  const c = 1497;
   return (
     <Fragment>
       <Helmet>
@@ -14,7 +17,13 @@ const ConsumerRecord = () => {
       </Helmet>
       <div className={styles.screen}>
         <NavigationBar title={'消費記錄'} link={path.member} linkFlag={true} />
-        <div className={styles.screenContent}></div>
+        <div className={styles.screenContent}>
+          <div className={styles.recordArea}>
+            <div
+              className={styles.record}
+            >{`${a} ${b}方案 消費金額${c}元`}</div>
+          </div>
+        </div>
       </div>
     </Fragment>
   );

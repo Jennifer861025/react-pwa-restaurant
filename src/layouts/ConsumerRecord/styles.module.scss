@@ -16,5 +16,17 @@
   background: $cp-main-bg-color;
   padding-top: $cp-phone-full-bar-spacing;
 }
-
-
+.recordArea {
+  margin-top: $cp-phone-main-spcing;
+}
+.record {
+  width: 340px;
+  height: 90px;
+  background: $cp-secondary-bg-color;
+  border-radius: 20px;
+  padding: $cp-phone-section-spacing;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  margin-bottom: $cp-phone-main-spcing;
+}

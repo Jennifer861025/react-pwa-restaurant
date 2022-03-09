@@ -16,5 +16,37 @@
   background: $cp-main-bg-color;
   padding-top: $cp-phone-full-bar-spacing;
 }
-
-
+.incTitle {
+  font-size: $cp-h1-size;
+  font-weight: bold;
+  margin: $cp-phone-main-spcing 0;
+}
+.checkDetail {
+  width: 325px;
+  height: 500px;
+  background: $cp-secondary-bg-color;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.checkDetail_peopleNum {
+  margin-bottom: $cp-phone-secondary-spacing;
+}
+.checkDetail_moneyArea {
+  display: flex;
+  margin-bottom: $cp-phone-main-spcing;
+  font-size: $cp-h1-size;
+  .money{
+    font-weight: bold;
+  }
+}
+.checkDetail_couponMemo {
+  text-align: center;
+  line-height: 35px;
+  margin-bottom: $cp-phone-main-spcing;
+}
+.button {
+  margin-bottom: $cp-phone-main-spcing;
+}
