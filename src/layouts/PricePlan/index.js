@@ -1,11 +1,11 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation, useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 import Button from '../../components/Button';
-// import menu from '../../assets/json/menu.json';
+import menu from '../../assets/json/menu.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import plan499 from '../../assets/image/499Plan.png';
@@ -17,6 +17,7 @@ const PricePlan = () => {
   const history = useHistory();
   const back = location.state?.back;
   const price = location.state?.price;
+  const menuChoose = menu.filter((x) => x.plan == price);
   const [value, setValue] = useState('');
   const submitHandler = () => {
     console.log('price ' + price);
@@ -30,6 +31,12 @@ const PricePlan = () => {
       setValue('');
     }
   };
+
+  useEffect(() => {
+    console.log(JSON.stringify(menuChoose));
+    console.log(menuChoose[0].planType[0].typeOption);
+  }, []);
+
   return (
     <Fragment>
       <Helmet>
@@ -51,33 +58,60 @@ const PricePlan = () => {
               {price === 699 ? <img src={plan699}></img> : <></>}
               {price === 899 ? <img src={plan899}></img> : <></>}
             </div>
-            <div
-              className={
-                value === 'beef' ? styles.optionArea : styles.optionArea_top
-              }
-            >
-              <div className={styles.optionBox}>
-                <div>牛肉</div>
-                <button
-                  className={styles.optionBtn}
-                  onClick={() => buttonHandler('beef')}
-                >
-                  <FontAwesomeIcon icon={faCaretDown} />
-                </button>
-              </div>
+            {menuChoose[0].planType.map((plan) => (
               <div
+                key={plan.typeID}
                 className={
-                  value === 'beef'
-                    ? styles.optionControl
-                    : styles.optionControl_hide
+                  value === plan.type
+                    ? styles.optionArea
+                    : styles.optionArea_top
                 }
               >
-                <div className={styles.option_list}>
-                  <div className={styles.option}>照燒牛</div>
-                  <div className={styles.option}>韓式牛</div>
+                <div className={styles.optionBox}>
+                  <div>{plan.typeName}</div>
+                  <button
+                    className={
+                      value === plan.type
+                        ? styles.optionBtnUp
+                        : styles.optionBtnDown
+                    }
+                    onClick={() => buttonHandler(plan.type)}
+                  >
+                    <FontAwesomeIcon icon={faCaretDown} />
+                  </button>
+                </div>
+                <div
+                  className={
+                    value === plan.type
+                      ? styles.optionControl
+                      : styles.optionControl_hide
+                  }
+                >
+                  <div className={styles.option_list}>
+                    {plan.typeOption.map((option) =>
+                      plan.type === 'seafood' ? (
+                        option.seafoodOption.map((seafoodOption) => (
+                          <div key={seafoodOption} className={styles.option}>
+                            {seafoodOption}
+                          </div>
+                        ))
+                      ) : (
+                        <div key={option} className={styles.option}>
+                          {option}
+                        </div>
+                      ),
+                    )}
+                    {/* {plan.planType[0].map((option) => (
+                      <div key={option} className={styles.option}>
+                        {option}
+                      </div>
+                    ))} */}
+
+                    {/* <div className={styles.option}>韓式牛</div> */}
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
             <Button
               title={'選擇此方案'}
               main={false}

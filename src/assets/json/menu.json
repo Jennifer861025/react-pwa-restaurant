@@ -1,7 +1,7 @@
 [
     {
         "planID":1,
-        "plan":"499",
+        "plan":499,
         "planType":[
             {
                 "typeID":1,
@@ -48,7 +48,7 @@
     },
     {
         "planID":1,
-        "plan":"699",
+        "plan":699,
         "planType":[
             {
                 "typeID":1,
@@ -95,7 +95,7 @@
     },
     {
         "planID":1,
-        "plan":"899",
+        "plan":899,
         "planType":[
             {
                 "typeID":1,

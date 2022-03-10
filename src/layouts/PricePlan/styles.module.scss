@@ -3,7 +3,7 @@
 @import '../../styles/font.scss';
 
 .screen {
-  height: 100vh;
+  height: 100%;
 }
 .screenContent {
   height: 100%;
@@ -13,7 +13,7 @@
   padding-top: $cp-phone-full-bar-spacing;
 }
 .mainContent {
-  margin: $cp-phone-main-margin-top $cp-phone-left-right-margin;
+  padding: $cp-phone-main-margin-top $cp-phone-left-right-margin;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -43,11 +43,18 @@
   background: $cp-secondary-bg-color;
   border-radius: 20px;
 }
-.optionBtn {
+.optionBtnDown {
   font-size: 32px;
   color: $cp-btn-color;
   border: 0px;
   background: none;
+}
+.optionBtnUp {
+  font-size: 32px;
+  color: $cp-btn-color;
+  border: 0px;
+  background: none;
+  transform: rotate(180deg);
 }
 .optionControl {
   display: block;
