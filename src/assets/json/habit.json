@@ -1,0 +1,39 @@
+[
+    {
+        "qID":1,
+        "question": "1.請問您是否有不吃的肉類品項？(複）",
+        "options":[
+            {
+                "id":1,
+                "option":"牛肉",
+                "value":"beef"
+            },
+            {
+                "id":2,
+                "option":"豬肉",
+                "value":"pork"
+            },
+            {
+                "id":3,
+                "option":"雞肉",
+                "value":"chicken"
+            }
+        ]
+    },
+    {
+        "qID":2,
+        "question": "2.請問您是否對以下品項過敏？(單）",
+        "options":[
+            {
+                "id":1,
+                "option":"甲殼類",
+                "value":"shell"
+            },
+            {
+                "id":2,
+                "option":"全部海鮮",
+                "value":"seafood"
+            }
+        ]
+    }
+]

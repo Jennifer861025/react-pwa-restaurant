@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation, useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
@@ -20,22 +20,16 @@ const PricePlan = () => {
   const menuChoose = menu.filter((x) => x.plan == price);
   const [value, setValue] = useState('');
   const submitHandler = () => {
-    console.log('price ' + price);
+    localStorage.setItem('pricePlan', price);
     history.push(path.mealHabits);
   };
   const buttonHandler = (valueClick) => {
-    console.log(valueClick);
     if (valueClick !== value) {
       setValue(valueClick);
     } else {
       setValue('');
     }
   };
-
-  useEffect(() => {
-    console.log(JSON.stringify(menuChoose));
-    console.log(menuChoose[0].planType[0].typeOption);
-  }, []);
 
   return (
     <Fragment>
