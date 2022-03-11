@@ -3,7 +3,7 @@
 @import '../../styles/font.scss';
 
 .screen {
-  height: 100vh;
+  height: 100%;
 }
 .screenContent {
   height: 100%;
@@ -16,5 +16,44 @@
   background: $cp-main-bg-color;
   padding-top: $cp-phone-full-bar-spacing;
 }
-
+.form {
+  width: 100vw;
+  padding: $cp-phone-main-spcing;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.question {
+  width: 100%;
+  margin-bottom: $cp-phone-secondary-spacing;
+}
+.option {
+  height: 50px;
+  background: $cp-secondary-bg-color;
+  border: 1px solid #000;
+  border-radius: $cp-btn-option-border-radius;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 12px;
+  margin-top: $cp-phone-section-spacing;
+}
+.option_active {
+  height: 50px;
+  background: $cp-btn-color;
+  color: $cp-btn-text-color;
+  border-radius: $cp-btn-option-border-radius;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 12px;
+  margin-top: $cp-phone-section-spacing;
+}
+.buttonArea {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 

@@ -52,36 +52,40 @@ const MealHabits = () => {
         <NavigationBar title={'用餐偏好'} linkFlag={false} />
         <div className={styles.screenContent}>
           <form className={styles.form} onSubmit={submitHandler}>
-            {habit.map((q) => (
-              <div key={q.qID} className={styles.question}>
-                <label>{q.question}</label>
-                {/* <input
+            {habit.map((q) =>
+              q.qID === 3 ? (
+                <></>
+              ) : (
+                <div key={q.qID} className={styles.question}>
+                  <label>{q.question}</label>
+                  {/* <input
                   type="hidden"
                   name="ans"
                   id={`q${q.qID}`}
                   value={answer[q.qID - 1]}
                 /> */}
-                {q.options.map((option) => (
-                  <label
-                    key={option.id}
-                    className={
-                      answer.includes(option.value) == true
-                        ? styles.option_active
-                        : styles.option
-                    }
-                  >
-                    <input
-                      type="checkbox"
-                      name={'stuAnswer' + q.qID}
-                      value={option.value}
-                      onChange={(e) => selectedChange(e.target.value)}
-                      checked={answer.includes(option.value) == true}
-                    />
-                    {option.option}
-                  </label>
-                ))}
-              </div>
-            ))}
+                  {q.options.map((option) => (
+                    <label
+                      key={option.id}
+                      className={
+                        answer.includes(option.value) == true
+                          ? styles.option_active
+                          : styles.option
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        name={'stuAnswer' + q.qID}
+                        value={option.value}
+                        onChange={(e) => selectedChange(e.target.value)}
+                        checked={answer.includes(option.value) == true}
+                      />
+                      {option.option}
+                    </label>
+                  ))}
+                </div>
+              ),
+            )}
             <div className={styles.buttonArea}>
               <Button title={'開始點餐'} type="submit"></Button>
             </div>

@@ -6,6 +6,8 @@
   width: 100vw;
   position: fixed;
   bottom: 0;
+  z-index: 10;
+  background: $cp-main-bg-color;
 }
 .tabBar {
   width: 100vw;

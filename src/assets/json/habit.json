@@ -35,5 +35,31 @@
                 "value":"seafood"
             }
         ]
+    },
+    {
+        "qID":3,
+        "question": "3. 請問您習慣的付費方式？(單）",
+        "options":[
+            {
+                "id":1,
+                "option":"Line Pay",
+                "value":"linePay"
+            },
+            {
+                "id":2,
+                "option":"Apple Pay",
+                "value":"applePay"
+            },
+            {
+                "id":3,
+                "option":"街口支付",
+                "value":"street"
+            },
+            {
+                "id":4,
+                "option":"臨櫃結帳",
+                "value":"counter"
+            }
+        ]
     }
 ]

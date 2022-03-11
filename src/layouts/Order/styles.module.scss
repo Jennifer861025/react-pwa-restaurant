@@ -16,5 +16,98 @@
   background: $cp-main-bg-color;
   padding-top: $cp-phone-full-bar-spacing;
 }
-
+.mainContent {
+  width: 100%;
+  padding: 0px $cp-phone-main-spcing 110px $cp-phone-main-spcing;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: $cp-main-bg-color;
+}
+.timeCount {
+  font-size: $cp-h1-size;
+  margin: $cp-phone-main-spcing 0px;
+}
+.optionArea_top {
+  width: 100%;
+  margin-bottom: $cp-phone-main-spcing;
+}
+.optionArea {
+  width: 100%;
+}
+.optionBox {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px $cp-phone-main-spcing;
+  background: $cp-secondary-bg-color;
+  border-radius: 20px;
+}
+.optionBtnDown {
+  font-size: 32px;
+  color: $cp-btn-color;
+  border: 0px;
+  background: none;
+}
+.optionBtnUp {
+  font-size: 32px;
+  color: $cp-btn-color;
+  border: 0px;
+  background: none;
+  transform: rotate(180deg);
+}
+.optionControl {
+  display: block;
+}
+.optionControl_hide {
+  display: none;
+}
+.option_list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.option {
+  width: 85%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #fff;
+  &:nth-last-child(1) {
+    border-bottom: 0px;
+  }
+}
+.numberControl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.numberControl_btn {
+  width: 30px;
+  height: 30px;
+  background: $cp-btn-color;
+  color: $cp-btn-text-color;
+  border-radius: $cp-btn-border-radius;
+  border: 0px;
+  box-sizing: border-box;
+}
+.numberControl_number {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  background: $cp-secondary-bg-color;
+  border: 1px solid #000;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  margin: 0px $cp-phone-section-spacing;
+}
+.submitBtn {
+  margin-top: $cp-phone-secondary-spacing;
+}
 

@@ -6,15 +6,48 @@
   height: 100vh;
 }
 .screenContent {
+  width: 100vw;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   font-size: $cp-p-size;
   color: $cp-text-color;
   background: $cp-main-bg-color;
   padding-top: $cp-phone-full-bar-spacing;
+  box-sizing: border-box;
 }
+.mainArea {
+  width: 100%;
+  padding: $cp-phone-main-spcing 35px;
+}
+.orderArea {
+  width: 100%;
+  padding: $cp-phone-section-spacing 0px;
+}
+
+.orderArea_detailArea {
+  width: 100%;
+  background: $cp-secondary-bg-color;
+  padding: 0px $cp-phone-top-phone-spacing;
+  border-radius: $cp-btn-border-radius;
+  margin-top: $cp-phone-section-spacing;
+}
+.detailArea_detail {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #B1B1B1;
+  &:nth-last-child(1) {
+    border-bottom: 0px;
+  }
+}
+.detail_number{
+  color: $cp-main-color;
+}
+
 
 
