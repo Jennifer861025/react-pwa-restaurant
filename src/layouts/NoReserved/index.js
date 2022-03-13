@@ -10,7 +10,7 @@ const NoReserved = () => {
   const history = useHistory();
   const [name, setName] = useState(null);
   const [phoneNum, setPhoneNum] = useState(null);
-  // const [peopleNum, setPeopleNum] = useState(1);
+  const [peopleNum, setPeopleNum] = useState(1);
   const submitHandler = (e) => {
     e.preventDefault();
     if (name == null) {
@@ -21,6 +21,16 @@ const NoReserved = () => {
       // console.log(peopleNum);
       history.push(path.waiting);
     }
+  };
+  const minusHandler = () => {
+    if (peopleNum == 1) {
+      setPeopleNum(1);
+    } else {
+      setPeopleNum(peopleNum - 1);
+    }
+  };
+  const plusHandler = () => {
+    setPeopleNum(peopleNum + 1);
   };
   return (
     <Fragment>
@@ -59,12 +69,23 @@ const NoReserved = () => {
             </div>
             <div className={styles.form_inputArea}>
               <label>用餐人數</label>
-              <input
-                type="text"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
+              <div className={styles.form_numberArea}>
+                <button
+                  type="button"
+                  className={styles.numberControl_btn}
+                  onClick={minusHandler}
+                >
+                  -
+                </button>
+                <div className={styles.numberControl_number}>{peopleNum}</div>
+                <button
+                  type="button"
+                  className={styles.numberControl_btn}
+                  onClick={plusHandler}
+                >
+                  +
+                </button>
+              </div>
             </div>
             <Button type="submit" title={'送出'} marginTop={true}></Button>
           </form>

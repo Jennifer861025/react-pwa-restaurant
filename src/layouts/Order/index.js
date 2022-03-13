@@ -1,5 +1,6 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
+import { useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
@@ -11,21 +12,57 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 const Order = () => {
   const [value, setValue] = useState('');
-  const [orderDetail, setOrderDetail] = useState({});
+  const [orderArray, setOrderArray] = useState([]);
+  const history = useHistory();
   const price = localStorage.getItem('pricePlan');
   const mealHabit = JSON.parse(localStorage.getItem('mealHabits'));
   const menuChoose = menu.filter((x) => x.plan == price);
 
   const submitHandler = () => {
     alert('餐點將盡快為您送達！');
+
+    const orderDetail = orderArray.filter((x) => x.number !== 0);
+    var allOrderDetail = JSON.parse(localStorage.getItem('allOrderDetail'));
+    var preOrderDetail = JSON.parse(localStorage.getItem('orderDetail'));
+
+    //將顧客所有點餐的紀錄都丟到localStorage
+    if (localStorage.getItem('allOrderDetail') === null) {
+      if (preOrderDetail !== null) {
+        localStorage.setItem('allOrderDetail', JSON.stringify(preOrderDetail));
+      }
+    } else {
+      preOrderDetail.map((orderDetail) => {
+        if (
+          allOrderDetail.some((x) => x.option == orderDetail.option) == true
+        ) {
+          var newObj = allOrderDetail.filter(
+            (x) => x.option == orderDetail.option,
+          );
+          newObj[0].number += orderDetail.number;
+        } else {
+          allOrderDetail.push(orderDetail);
+        }
+      });
+      localStorage.setItem('allOrderDetail', JSON.stringify(allOrderDetail));
+    }
+
+    //挑選如果數量是0的項目，就不會在紀錄中顯示
     localStorage.setItem('orderDetail', JSON.stringify(orderDetail));
-    const newObj = { ...orderDetail };
-    Object.keys(newObj).forEach((key) => {
-      delete newObj[key];
-    });
-    setOrderDetail(newObj);
-    // history.push(path.mealHabits);
+
+    //存完之後，將點餐頁的Array清空
+    var newArray = { ...orderArray };
+    newArray = [];
+    setOrderArray(newArray);
+
+    //切換到點餐紀錄的頁面
+    history.push(path.orderRecord);
   };
+
+  useEffect(() => {
+    console.log(localStorage.getItem('allOrderDetail'));
+  }, []);
+
+  //若點開其他的項目，原本的項目會收合選單
   const buttonHandler = (valueClick) => {
     if (valueClick !== value) {
       setValue(valueClick);
@@ -33,31 +70,40 @@ const Order = () => {
       setValue('');
     }
   };
+
+  //減號按鈕控制
   const minusHandler = (option) => {
-    console.log('option: ' + option);
-    console.log('minus:' + JSON.stringify(orderDetail));
-    const newObj = { ...orderDetail };
-    if (newObj[option] == undefined) {
-      newObj[option] = 0;
+    const newArray = [...orderArray];
+    var newObj = {};
+    if (newArray.some((x) => x.option == option) == false) {
+      const newObj = { 'option': option, 'number': 0 };
+      newArray.push(newObj);
+      setOrderArray(newArray);
     } else {
-      if (newObj[option] == 0) {
-        newObj[option] = 0;
+      newObj = newArray.filter((x) => x.option == option);
+      if (newObj[0].number == 0) {
+        newObj[0].number = 0;
+        setOrderArray(newArray);
       } else {
-        newObj[option] = newObj[option] - 1;
+        newObj[0].number = newObj[0].number - 1;
+        setOrderArray(newArray);
       }
     }
-    setOrderDetail(newObj);
   };
+
+  //加號按鈕控制
   const plusHandler = (option) => {
-    console.log('option: ' + option);
-    console.log('plus:' + JSON.stringify(orderDetail));
-    const newObj = { ...orderDetail };
-    if (newObj[option] == undefined) {
-      newObj[option] = 1;
+    const newArray = [...orderArray];
+    var newObj = {};
+    if (newArray.some((x) => x.option == option) == false) {
+      const newObj = { 'option': option, 'number': 1 };
+      newArray.push(newObj);
+      setOrderArray(newArray);
     } else {
-      newObj[option] = newObj[option] + 1;
+      newObj = newArray.filter((x) => x.option == option);
+      newObj[0].number = newObj[0].number + 1;
+      setOrderArray(newArray);
     }
-    setOrderDetail(newObj);
   };
 
   return (
@@ -130,9 +176,13 @@ const Order = () => {
                                     -
                                   </button>
                                   <div className={styles.numberControl_number}>
-                                    {orderDetail[seafoodOption] == undefined
+                                    {orderArray.some(
+                                      (x) => x.option == seafoodOption,
+                                    ) == false
                                       ? 0
-                                      : orderDetail[seafoodOption]}
+                                      : orderArray.filter(
+                                          (x) => x.option == seafoodOption,
+                                        )[0].number}
                                   </div>
                                   <button
                                     className={styles.numberControl_btn}
@@ -155,9 +205,12 @@ const Order = () => {
                                 -
                               </button>
                               <div className={styles.numberControl_number}>
-                                {orderDetail[option] == undefined
+                                {orderArray.some((x) => x.option == option) ==
+                                false
                                   ? 0
-                                  : orderDetail[option]}
+                                  : orderArray.filter(
+                                      (x) => x.option == option,
+                                    )[0].number}
                               </div>
                               <button
                                 className={styles.numberControl_btn}

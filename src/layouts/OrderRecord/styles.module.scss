@@ -26,6 +26,13 @@
   width: 100%;
   padding: $cp-phone-section-spacing 0px;
 }
+.orderArea_detailArea_null {
+  width: 100%;
+  background: $cp-secondary-bg-color;
+  padding: $cp-phone-section-spacing $cp-phone-top-phone-spacing;
+  border-radius: $cp-btn-border-radius;
+  margin-top: $cp-phone-section-spacing;
+}
 
 .orderArea_detailArea {
   width: 100%;
@@ -40,14 +47,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #B1B1B1;
+  border-bottom: 1px solid #b1b1b1;
   &:nth-last-child(1) {
     border-bottom: 0px;
   }
 }
-.detail_number{
+.detail_number {
   color: $cp-main-color;
 }
-
-
-

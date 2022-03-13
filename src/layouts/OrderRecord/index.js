@@ -5,6 +5,8 @@ import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 
 const OrderRecord = () => {
+  const orderDetail = JSON.parse(localStorage.getItem('orderDetail'));
+  const allOrderDetail = JSON.parse(localStorage.getItem('allOrderDetail'));
   return (
     <Fragment>
       <Helmet>
@@ -18,29 +20,39 @@ const OrderRecord = () => {
           <div className={styles.mainArea}>
             <div className={styles.orderArea}>
               <div>餐點正在準備中：</div>
-              <div className={styles.orderArea_detailArea}>
-                <div className={styles.detailArea_detail}>
-                  <div>照燒牛</div>
-                  <div className={styles.detail_number}>X2</div>
+              {orderDetail == null ? (
+                <div className={styles.orderArea_detailArea_null}>
+                  目前尚未有準備中的餐點！
                 </div>
-                <div className={styles.detailArea_detail}>
-                  <div>梅花豬</div>
-                  <div className={styles.detail_number}>X2</div>
+              ) : (
+                <div className={styles.orderArea_detailArea}>
+                  {orderDetail.map((prepare) => (
+                    <div key={prepare} className={styles.detailArea_detail}>
+                      <div>{prepare.option}</div>
+                      <div className={styles.detail_number}>
+                        X{prepare.number}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
             <div className={styles.orderArea}>
               <div>餐點已送達：</div>
-              <div className={styles.orderArea_detailArea}>
-                <div className={styles.detailArea_detail}>
-                  <div>照燒牛</div>
-                  <div className={styles.detail_number}>X2</div>
+              {allOrderDetail == null ? (
+                <div className={styles.orderArea_detailArea_null}>
+                  目前尚未有已送達的餐點！
                 </div>
-                <div className={styles.detailArea_detail}>
-                  <div>梅花豬</div>
-                  <div className={styles.detail_number}>X2</div>
+              ) : (
+                <div className={styles.orderArea_detailArea}>
+                  {allOrderDetail.map((all) => (
+                    <div key={all} className={styles.detailArea_detail}>
+                      <div>{all.option}</div>
+                      <div className={styles.detail_number}>X{all.number}</div>
+                    </div>
+                  ))}
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

@@ -95,22 +95,17 @@ const PricePlan = () => {
                         </div>
                       ),
                     )}
-                    {/* {plan.planType[0].map((option) => (
-                      <div key={option} className={styles.option}>
-                        {option}
-                      </div>
-                    ))} */}
-
-                    {/* <div className={styles.option}>韓式牛</div> */}
                   </div>
                 </div>
               </div>
             ))}
-            <Button
-              title={'選擇此方案'}
-              main={false}
-              onClickHandler={submitHandler}
-            ></Button>
+            <div className={back ? styles.button_hide : styles.button}>
+              <Button
+                title={'選擇此方案'}
+                main={false}
+                onClickHandler={submitHandler}
+              ></Button>
+            </div>
           </div>
         </div>
       </div>
