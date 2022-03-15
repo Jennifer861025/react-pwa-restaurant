@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Fragment, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
@@ -11,12 +12,64 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 const Order = () => {
+  var day = new Date();
+  var nowHour = day.getHours();
+  var nowMinute = day.getMinutes();
+  var nowSecond = day.getSeconds();
+  const [hour, setHour] = useState();
+  const [minute, setMinute] = useState();
+  const [second, setSecond] = useState();
+  // const [hour] = useState(2);
+  // const [minute] = useState(0);
+  // const [second] = useState(0);
   const [value, setValue] = useState('');
   const [orderArray, setOrderArray] = useState([]);
   const history = useHistory();
   const price = localStorage.getItem('pricePlan');
   const mealHabit = JSON.parse(localStorage.getItem('mealHabits'));
   const menuChoose = menu.filter((x) => x.plan == price);
+
+  const zeroFill = (x) => {
+    if (x < 10) {
+      x = `0${x}`;
+    }
+    return x;
+  };
+
+  // 用餐時間倒數設定
+  var finishTime = localStorage.getItem('finishTime')
+    ? localStorage.getItem('finishTime')
+    : `${nowHour + 2}:${nowMinute}:${nowSecond}`;
+
+  const timeArray = finishTime.split(':');
+
+  useEffect(() => {
+    if (localStorage.getItem('finishTime') == null) {
+      localStorage.setItem(
+        'finishTime',
+        `${nowHour + 2}:${nowMinute}:${nowSecond}`,
+      );
+    }
+
+    setInterval(() => {
+      var date = new Date();
+      var currentHour = date.getHours();
+      var currentMinute = date.getMinutes();
+      var currentSecond = date.getSeconds();
+      var second =
+        currentSecond > timeArray[2]
+          ? timeArray[2] + 60 - currentSecond
+          : timeArray[2] - currentSecond;
+      var minute =
+        currentMinute > Number(timeArray[1])
+          ? Number(timeArray[1]) + 60 - currentMinute
+          : Number(timeArray[1]) - currentMinute
+      var hour = currentMinute > Number(timeArray[1]) ? Number(timeArray[0]) - currentHour - 1 : Number(timeArray[0]) - currentHour;
+      setSecond(second);
+      setMinute(minute);
+      setHour(hour);
+    }, 1000);
+  }, []);
 
   const submitHandler = () => {
     alert('餐點將盡快為您送達！');
@@ -57,10 +110,6 @@ const Order = () => {
     //切換到點餐紀錄的頁面
     history.push(path.orderRecord);
   };
-
-  useEffect(() => {
-    console.log(localStorage.getItem('allOrderDetail'));
-  }, []);
 
   //若點開其他的項目，原本的項目會收合選單
   const buttonHandler = (valueClick) => {
@@ -123,7 +172,10 @@ const Order = () => {
         <TabBar order={true} />
         <div className={styles.screenContent}>
           <div className={styles.mainContent}>
-            <div className={styles.timeCount}>用餐時間倒數：02:00:00</div>
+            <div className={styles.timeCount}>
+              用餐時間倒數：{zeroFill(hour)}：{zeroFill(minute)}：
+              {zeroFill(second)}
+            </div>
             {menuChoose[0].planType.map((plan) =>
               mealHabit.includes(plan.type) ? (
                 <></>
