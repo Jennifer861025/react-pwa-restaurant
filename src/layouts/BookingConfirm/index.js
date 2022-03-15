@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
@@ -8,6 +8,9 @@ import path from '../../utils/path';
 import Button from '../../components/Button';
 
 const BookingConfirm = () => {
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
   return (
     <Fragment>
       <Helmet>

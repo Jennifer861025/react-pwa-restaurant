@@ -15,6 +15,7 @@ const Feedback = () => {
   const [stuSelected, setStuSelected] = useState('');
 
   const submitHandler = () => {
+    alert('恭喜你獲得50元折價券');
     localStorage.setItem('feedbackFinish', true);
     history.push(path.checkoutOptions);
   };

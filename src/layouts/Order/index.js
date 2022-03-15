@@ -19,9 +19,6 @@ const Order = () => {
   const [hour, setHour] = useState();
   const [minute, setMinute] = useState();
   const [second, setSecond] = useState();
-  // const [hour] = useState(2);
-  // const [minute] = useState(0);
-  // const [second] = useState(0);
   const [value, setValue] = useState('');
   const [orderArray, setOrderArray] = useState([]);
   const history = useHistory();
@@ -57,9 +54,9 @@ const Order = () => {
       var currentMinute = date.getMinutes();
       var currentSecond = date.getSeconds();
       var second =
-        currentSecond > timeArray[2]
-          ? timeArray[2] + 60 - currentSecond
-          : timeArray[2] - currentSecond;
+        currentSecond > Number(timeArray[2])
+          ? Number(timeArray[2]) + 60 - currentSecond
+          : Number(timeArray[2]) - currentSecond;
       var minute =
         currentMinute > Number(timeArray[1])
           ? Number(timeArray[1]) + 60 - currentMinute

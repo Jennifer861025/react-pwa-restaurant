@@ -23,6 +23,7 @@
   width: 340px;
   height: 90px;
   background: $cp-secondary-bg-color;
+  border: none;
   border-radius: 20px;
   padding: 12px $cp-phone-section-spacing;
   box-sizing: border-box;
@@ -30,16 +31,17 @@
   flex-direction: column;
   justify-content: flex-end;
   margin-bottom: $cp-phone-main-spcing;
-  .coupon {
-    width: 100%;
-  }
-  .useDate {
-    width: 100%;
-    font-size: 16px;
-    color: #7E7E7E;
-    display: flex;
-    justify-content: flex-end;
+  &.couponBox_active {
+    border: 5px solid $cp-btn-color;
   }
 }
+.useDate {
+  width: 100%;
+  font-size: 16px;
+  color: #7E7E7E;
+  display: flex;
+  justify-content: flex-end;
+}
+
 
 
