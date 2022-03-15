@@ -10,15 +10,15 @@ import Button from '../../components/Button';
 import menu from '../../assets/json/menu.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-
+var timeCount;
 const Order = () => {
   var day = new Date();
   var nowHour = day.getHours();
   var nowMinute = day.getMinutes();
   var nowSecond = day.getSeconds();
-  const [hour, setHour] = useState();
-  const [minute, setMinute] = useState();
-  const [second, setSecond] = useState();
+  const [orderHour, setHour] = useState();
+  const [orderMinute, setMinute] = useState();
+  const [orderSecond, setSecond] = useState();
   const [value, setValue] = useState('');
   const [orderArray, setOrderArray] = useState([]);
   const history = useHistory();
@@ -47,26 +47,52 @@ const Order = () => {
         `${nowHour + 2}:${nowMinute}:${nowSecond}`,
       );
     }
-
-    setInterval(() => {
-      var date = new Date();
-      var currentHour = date.getHours();
-      var currentMinute = date.getMinutes();
-      var currentSecond = date.getSeconds();
-      var second =
-        currentSecond > Number(timeArray[2])
-          ? Number(timeArray[2]) + 60 - currentSecond
-          : Number(timeArray[2]) - currentSecond;
-      var minute =
-        currentMinute > Number(timeArray[1])
-          ? Number(timeArray[1]) + 60 - currentMinute
-          : Number(timeArray[1]) - currentMinute
-      var hour = currentMinute > Number(timeArray[1]) ? Number(timeArray[0]) - currentHour - 1 : Number(timeArray[0]) - currentHour;
-      setSecond(second);
-      setMinute(minute);
-      setHour(hour);
+    timeCount = setInterval(() => {
+      getOrderTime();
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    console.log(`${orderHour}:${orderMinute}:${orderSecond}`);
+    if (orderHour == 0 && orderMinute == 0 && orderSecond == 0) {
+      setSecond(0);
+      alert('用餐時間已經到囉！');
+      clearInterval(timeCount);
+    }
+  }, [orderHour, orderMinute, orderSecond]);
+
+  const getOrderTime = () => {
+    var date = new Date();
+    var currentHour = date.getHours();
+    var currentMinute = date.getMinutes();
+    var currentSecond = date.getSeconds();
+    var finishSecond = Number(timeArray[2]);
+    var finishMinute = Number(timeArray[1]);
+    var finishHour = Number(timeArray[0]);
+    if (finishSecond < currentSecond) {
+      setSecond(finishSecond + 60 - currentSecond);
+      if (finishMinute - 1 < currentMinute) {
+        setMinute(finishMinute + 59 - currentMinute);
+        setHour(finishHour - 1 - currentHour);
+        return;
+      } else {
+        setMinute(finishMinute - 1 - currentMinute);
+        setHour(finishHour - currentHour);
+        return;
+      }
+    } else {
+      setSecond(finishSecond - currentSecond);
+      if (finishMinute < currentMinute) {
+        setMinute(finishMinute + 60 - currentMinute);
+        setHour(finishHour - 1 - currentHour);
+        return;
+      } else {
+        setMinute(finishMinute - currentMinute);
+        setHour(finishHour - currentHour);
+        return;
+      }
+    }
+  };
 
   const submitHandler = () => {
     alert('餐點將盡快為您送達！');
@@ -170,8 +196,8 @@ const Order = () => {
         <div className={styles.screenContent}>
           <div className={styles.mainContent}>
             <div className={styles.timeCount}>
-              用餐時間倒數：{zeroFill(hour)}：{zeroFill(minute)}：
-              {zeroFill(second)}
+              用餐時間倒數：{zeroFill(orderHour)}：{zeroFill(orderMinute)}：
+              {zeroFill(orderSecond)}
             </div>
             {menuChoose[0].planType.map((plan) =>
               mealHabit.includes(plan.type) ? (
