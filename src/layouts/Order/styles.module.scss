@@ -82,6 +82,14 @@
     border-bottom: 0px;
   }
 }
+.optionTitle {
+  display: flex;
+}
+.optionIntroIcon {
+  font-size: 24px;
+  color: $cp-btn-color;
+  margin-left: 5px;
+}
 .numberControl {
   display: flex;
   justify-content: center;
@@ -110,4 +118,3 @@
 .submitBtn {
   margin-top: $cp-phone-secondary-spacing;
 }
-

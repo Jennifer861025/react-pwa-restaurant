@@ -9,7 +9,8 @@ import TabBar from '../../components/TabBar';
 import Button from '../../components/Button';
 import menu from '../../assets/json/menu.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+
 var timeCount;
 const Order = () => {
   var day = new Date();
@@ -53,7 +54,7 @@ const Order = () => {
   }, []);
 
   useEffect(() => {
-    console.log(`${orderHour}:${orderMinute}:${orderSecond}`);
+    // console.log(`${orderHour}:${orderMinute}:${orderSecond}`);
     if (orderHour == 0 && orderMinute == 0 && orderSecond == 0) {
       setSecond(0);
       alert('用餐時間已經到囉！');
@@ -178,6 +179,16 @@ const Order = () => {
     }
   };
 
+  //TODO:
+  const FoodDetailHandler = (optionTitle) => {
+    const location = {
+      pathname: path.foodDetail,
+      state: { foodTitle: optionTitle }
+    }
+    console.log('optionTitle: ' + optionTitle);
+    history.push(location);
+  };
+
   return (
     <Fragment>
       <Helmet>
@@ -242,7 +253,15 @@ const Order = () => {
                                 key={seafoodOption}
                                 className={styles.option}
                               >
-                                <div>{seafoodOption}</div>
+                                <div
+                                  className={styles.optionTitle}
+                                  onClick={()=>FoodDetailHandler(seafoodOption)}
+                                >
+                                  <div>{seafoodOption}</div>
+                                  <div className={styles.optionIntroIcon}>
+                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                  </div>
+                                </div>
                                 <div className={styles.numberControl}>
                                   <button
                                     className={styles.numberControl_btn}
@@ -271,7 +290,15 @@ const Order = () => {
                           )
                         ) : (
                           <div key={option} className={styles.option}>
-                            <div>{option}</div>
+                            <div
+                              className={styles.optionTitle}
+                              onClick={()=>FoodDetailHandler(option)}
+                            >
+                              <div>{option}</div>
+                              <div className={styles.optionIntroIcon}>
+                                <FontAwesomeIcon icon={faInfoCircle} />
+                              </div>
+                            </div>
                             <div className={styles.numberControl}>
                               <button
                                 className={styles.numberControl_btn}

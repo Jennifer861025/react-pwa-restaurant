@@ -1,0 +1,149 @@
+[
+    {
+        "foodTitle": "照燒牛",
+        "foodImg": "assets/image/beef/beef.png",
+        "foodSize": "6片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "澳洲"
+    },
+    {
+        "foodTitle": "韓式牛",
+        "foodImg": "assets/image/beef/KoreaBeef.png",
+        "foodSize": "6片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "韓國"
+    },
+    {
+        "foodTitle": "牛舌",
+        "foodImg": "assets/image/beef/beefTongue.png",
+        "foodSize": "4片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "澳洲"
+    },
+    {
+        "foodTitle": "日本和牛",
+        "foodImg": "assets/image/beef/JapanBeef.png",
+        "foodSize": "4片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "日本"
+    },
+    {
+        "foodTitle": "梅花豬",
+        "foodImg": "assets/image/pork/plumPork.png",
+        "foodSize": "6片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "五花豬",
+        "foodImg": "assets/image/pork/porkBelly.png",
+        "foodSize": "6片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "松阪豬",
+        "foodImg": "assets/image/pork/MatsusakaPork.png",
+        "foodSize": "6片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "日本"
+    },
+    {
+        "foodTitle": "黑豚豬",
+        "foodImg": "assets/image/pork/blackPork.png",
+        "foodSize": "6片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "雞腿肉",
+        "foodImg": "assets/image/chicken/chickenLeg.png",
+        "foodSize": "5塊 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "辣雞翅",
+        "foodImg": "assets/image/chicken/spicyChicken.png",
+        "foodSize": "5塊 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "韓國"
+    },
+    {
+        "foodTitle": "起司雞",
+        "foodImg": "assets/image/chicken/cheeseChicken.png",
+        "foodSize": "4塊 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "蝦子",
+        "foodImg": "assets/image/seafood/shrimp.png",
+        "foodSize": "5隻 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "三點蟹",
+        "foodImg": "assets/image/seafood/crab.png",
+        "foodSize": "3隻 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "龍蝦",
+        "foodImg": "assets/image/seafood/lobster.png",
+        "foodSize": "1隻 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "加拿大"
+    },
+    {
+        "foodTitle": "鯖魚",
+        "foodImg": "assets/image/seafood/mackerel.png",
+        "foodSize": "3條 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "鱈魚",
+        "foodImg": "assets/image/seafood/cod.png",
+        "foodSize": "3片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "冰魚",
+        "foodImg": "assets/image/seafood/iceFish.png",
+        "foodSize": "3片 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "冰島"
+    },
+    {
+        "foodTitle": "四季豆",
+        "foodImg": "assets/image/vegetable/gBean.png",
+        "foodSize": "8根 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "玉米",
+        "foodImg": "assets/image/vegetable/corn.png",
+        "foodSize": "4塊 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "筊白筍",
+        "foodImg": "assets/image/vegetable/bamboo.png",
+        "foodSize": "4支 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    },
+    {
+        "foodTitle": "芥蘭",
+        "foodImg": "assets/image/vegetable/kale.png",
+        "foodSize": "3把 / 份",
+        "foodCookTime": "1分鐘",
+        "foodLocation": "台灣"
+    }
+]

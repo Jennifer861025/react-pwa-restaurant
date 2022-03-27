@@ -20,6 +20,7 @@ import PricePlan from '../layouts/PricePlan';
 import MealHabits from '../layouts/MealHabits';
 import Order from '../layouts/Order';
 import OrderRecord from '../layouts/OrderRecord';
+import FoodDetail from '../layouts/FoodDetail';
 import Checkout from '../layouts/Checkout';
 import Feedback from '../layouts/Feedback';
 import CheckoutOptions from '../layouts/CheckoutOptions';
@@ -89,6 +90,8 @@ const Routes = () => {
           <Route exact path={path.order} component={Order} />
           {/* 點餐紀錄 */}
           <Route exact path={path.orderRecord} component={OrderRecord} />
+          {/* 食材介紹 */}
+          <Route exact path={path.foodDetail} component={FoodDetail} />
           {/* 用餐結帳 */}
           <Route exact path={path.checkout} component={Checkout} />
           {/* 用餐意見回饋 */}

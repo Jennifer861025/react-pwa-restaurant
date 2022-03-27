@@ -10,6 +10,7 @@ export default {
   mealHabits: '/mealHabits',
   order: '/order',
   orderRecord: '/orderRecord',
+  foodDetail: '/foodDetail',
   checkout: '/checkout',
   feedback: '/feedback',
   checkoutOptions: '/checkoutOptions',

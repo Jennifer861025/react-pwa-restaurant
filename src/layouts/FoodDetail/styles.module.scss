@@ -1,0 +1,40 @@
+@import '../../styles/spacing.scss';
+@import '../../styles/color.scss';
+@import '../../styles/font.scss';
+
+.screen {
+  height: 100vh;
+}
+.screenContent {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: $cp-p-size;
+  color: $cp-text-color;
+  background: $cp-main-bg-color;
+  padding-top: $cp-phone-full-bar-spacing;
+  box-sizing: border-box;
+}
+.mainArea {
+  width: 100%;
+  padding: $cp-phone-main-margin-top 35px;
+}
+.foodImgArea {
+  width: 100%;
+  .foodImgArea_img{
+    width: 100%;
+    border-radius: $cp-btn-border-radius;
+  }
+}
+.foodDetailArea {
+  background: $cp-secondary-bg-color;
+  border-radius: $cp-btn-border-radius;
+  padding: $cp-phone-secondary-spacing;
+  margin-top: $cp-phone-main-spcing;
+  .foodDetailArea_foodCookTime {
+    margin: $cp-phone-section-spacing 0px;
+  }
+}
