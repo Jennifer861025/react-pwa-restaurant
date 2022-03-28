@@ -6,6 +6,7 @@ import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 import Button from '../../components/Button';
 import feedback from '../../assets/json/feedback.json';
+import DoubleCheckModel from '../../components/DoubleCheckModel';
 
 const Feedback = () => {
   const history = useHistory();
@@ -13,11 +14,11 @@ const Feedback = () => {
   const [stuAns, setStuAns] = useState(0);
   const [flag, setFlag] = useState(false);
   const [stuSelected, setStuSelected] = useState('');
+  const [doubleCheckShow, setDoubleCheckShow] = useState(false);
 
-  const submitHandler = () => {
-    alert('恭喜你獲得50元折價券');
-    localStorage.setItem('feedbackFinish', true);
-    history.push(path.checkoutOptions);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setDoubleCheckShow(true);
   };
 
   const selectedChange = (e) => {
@@ -26,6 +27,16 @@ const Feedback = () => {
     setStuAns(n);
     setFlag(true);
     setStuSelected(e);
+  };
+
+  const leftBtnHandler = () => {
+    localStorage.setItem('feedbackFinish', true);
+    history.push(path.checkout);
+  };
+
+  const rightBtnHandler = () => {
+    localStorage.setItem('couponLastPage', 'feedback');
+    history.push(path.coupon);
   };
 
   useEffect(() => {
@@ -45,6 +56,18 @@ const Feedback = () => {
         <title>用餐意見回饋</title>
         <meta name="description" content="用餐意見回饋" />
       </Helmet>
+      <DoubleCheckModel
+        show={doubleCheckShow}
+        closeHandler={() => setDoubleCheckShow(false)}
+        modalTitle={'恭喜您獲得50元折價券'}
+        modalBody={
+          '感謝您的用餐回饋，我們將發送優惠券給您，您可以到優惠券專區查看，或者返回結帳頁面'
+        }
+        leftBtnTitle={'返回'}
+        leftBtnHandler={leftBtnHandler}
+        rightBtnTitle={'查看優惠券'}
+        rightBtnHandler={rightBtnHandler}
+      />
       <div className={styles.screen}>
         <NavigationBar
           title={'用餐意見回饋'}

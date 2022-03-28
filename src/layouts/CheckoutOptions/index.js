@@ -8,8 +8,7 @@ import Button from '../../components/Button';
 
 const CheckoutOptions = () => {
   var priceInit = 1497;
-  var feedbackFinish = localStorage.getItem('feedbackFinish');
-  var price = JSON.parse(feedbackFinish) ? priceInit - 100 : priceInit;
+  var price = priceInit;
 
   return (
     <Fragment>
@@ -22,7 +21,7 @@ const CheckoutOptions = () => {
         <NavigationBar
           title={'結帳選擇'}
           link={path.checkout}
-          linkFlag={JSON.parse(feedbackFinish) ? false : true}
+          linkFlag={true}
         />
         <div className={styles.screenContent}>
           <div className={styles.moneyArea}>

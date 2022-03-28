@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
@@ -8,8 +8,17 @@ import TabBar from '../../components/TabBar';
 import Button from '../../components/Button';
 
 const Checkout = () => {
+  const history = useHistory();
+  const feedbackFinish = localStorage.getItem('feedbackFinish')
+    ? JSON.parse(localStorage.getItem('feedbackFinish'))
+    : false;
+
+  const feedbackBtnHandler = () => {
+    history.push(path.feedback);
+  };
+
   useEffect(() => {
-    localStorage.setItem('feedbackFinish', false);
+    console.log(feedbackFinish);
   }, []);
   return (
     <Fragment>
@@ -34,9 +43,18 @@ const Checkout = () => {
             <div className={styles.checkDetail_couponMemo}>
               幫助我們填寫用餐意見回饋<br></br>問卷，可享有優惠好禮！
             </div>
-            <Link to={path.feedback} className={styles.button}>
-              <Button title={'填寫問卷'} main={false}></Button>
-            </Link>
+            {/* <Link to={path.feedback} className={styles.button}> */}
+            <button
+              className={
+                feedbackFinish
+                  ? `${styles.button} ${styles.button_disabled}`
+                  : styles.button
+              }
+              onClick={feedbackBtnHandler}
+              disabled={feedbackFinish ? 'disabled' : ''}
+            >
+              {feedbackFinish ? '問卷已填寫' : '填寫問卷'}
+            </button>
             <Link to={path.checkoutOptions}>
               <Button title={'結帳'} main={false}></Button>
             </Link>
