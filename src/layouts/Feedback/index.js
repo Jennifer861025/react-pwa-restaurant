@@ -7,6 +7,7 @@ import NavigationBar from '../../components/NavigationBar';
 import Button from '../../components/Button';
 import feedback from '../../assets/json/feedback.json';
 import DoubleCheckModel from '../../components/DoubleCheckModel';
+import { setCoupon } from '../../store/action';
 
 const Feedback = () => {
   const history = useHistory();
@@ -16,9 +17,24 @@ const Feedback = () => {
   const [stuSelected, setStuSelected] = useState('');
   const [doubleCheckShow, setDoubleCheckShow] = useState(false);
 
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth() + 3;
+  var day = date.getDate();
+
   const submitHandler = (e) => {
     e.preventDefault();
-    setDoubleCheckShow(true);
+    if (answer.length == feedback.length) {
+      setDoubleCheckShow(true);
+      //TODO: 修改 phone
+      setCoupon({
+        phone: '1',
+        couponValue: 50,
+        deadline: `${year}/${month}/${day}`,
+      });
+    } else {
+      alert('尚有問題未作答喔!');
+    }
   };
 
   const selectedChange = (e) => {
@@ -35,6 +51,7 @@ const Feedback = () => {
   };
 
   const rightBtnHandler = () => {
+    localStorage.setItem('feedbackFinish', true);
     localStorage.setItem('couponLastPage', 'feedback');
     history.push(path.coupon);
   };

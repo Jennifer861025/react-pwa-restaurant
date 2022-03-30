@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getToken } from '../../api';
+import { getToken } from '../../store/action';
 
 const Notifications = () => {
   const [isTokenFound, setTokenFound] = useState(false);

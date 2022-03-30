@@ -8,7 +8,10 @@ import Button from '../../components/Button';
 
 const CheckoutOptions = () => {
   var priceInit = 1497;
-  var price = priceInit;
+  const couponValue = JSON.parse(localStorage.getItem('couponChoose'))
+    ? JSON.parse(localStorage.getItem('couponChoose')).couponValue
+    : 0;
+  var price = priceInit - couponValue;
 
   return (
     <Fragment>

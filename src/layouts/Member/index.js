@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import styles from './styles.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 import TabBar from '../../components/TabBar';
@@ -9,6 +9,11 @@ import Button from '../../components/Button';
 import logo from '../../assets/image/logo5.png';
 
 const Member = () => {
+  const history = useHistory();
+  const couponHandler = () => {
+    localStorage.setItem('couponLastPage', 'member');
+    history.push(path.coupon);
+  };
   return (
     <Fragment>
       <Helmet>
@@ -27,9 +32,9 @@ const Member = () => {
           <Link to={path.consumerRecord} className={styles.button}>
             <Button title={'消費記錄'}></Button>
           </Link>
-          <Link to={path.coupon} className={styles.button}>
+          <div onClick={couponHandler} className={styles.button}>
             <Button title={'優惠券票夾'}></Button>
-          </Link>
+          </div>
           <Link to={path.habitSetting} className={styles.button}>
             <Button title={'偏好設定'}></Button>
           </Link>

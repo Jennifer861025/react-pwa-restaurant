@@ -7,7 +7,7 @@ import { StoreProvider } from '../store/reducer';
 import path from '../utils/path';
 import Notifications from '../components/Notifications/Notifications';
 import ReactNotificationComponent from '../components/Notifications/ReactNotification';
-import { onMessageListener } from '../api';
+import { onMessageListener } from '../store/action';
 
 // import HomePage from '../layouts/Home';
 import BookingConfirmPage from '../layouts/BookingConfirm';

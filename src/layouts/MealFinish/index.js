@@ -1,11 +1,25 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import styles from './styles.module.scss';
 // import path from '../../utils/path';
 import logo from '../../assets/image/logo5.png';
 import Button from '../../components/Button';
+import { deleteCoupon } from '../../store/action';
 
 const MealFinish = () => {
+  const couponChoose = JSON.parse(localStorage.getItem('couponChoose'))
+    ? JSON.parse(localStorage.getItem('couponChoose'))
+    : [];
+  useEffect(() => {
+    if (
+      couponChoose.couponId !== undefined ||
+      couponChoose.couponId !== null ||
+      couponChoose.couponId !== ''
+    ) {
+      //TODO: 記得改phone
+      deleteCoupon({ phone: '1', couponId: couponChoose.couponId });
+    }
+  }, []);
   return (
     <Fragment>
       <Helmet>

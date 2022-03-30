@@ -1,0 +1,45 @@
+@import '../../styles/color.scss';
+@import '../../styles/font.scss';
+@import '../../styles/spacing.scss';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $cp-main-bg-color;
+  z-index: 2;
+}
+
+.loading_loadingBlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loadingBlock_icon {
+  color: $cp-secondary-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loadingBlock_icon__outer {
+  font-size: 80px;
+  color: $cp-secondary-color;
+}
+.loadingBlock_icon__center {
+  font-size: 32px;
+  color: $cp-main-bg-color;
+  position: absolute;
+}
+
+.loadingBlock_text {
+  margin-top: $cp-phone-main-spcing;
+  font-size: $cp-h1-size;
+  font-weight:800;
+}

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 
 import styles from './styles.module.scss';
-import { getToken } from '../../api';
+import { getToken } from '../../store/action';
 
 const Home = () => {
   useEffect(() => {
