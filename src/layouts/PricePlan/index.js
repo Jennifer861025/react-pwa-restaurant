@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation, useHistory } from 'react-router-dom';
+import * as QueryString from 'query-string';
 import styles from './styles.module.scss';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
@@ -15,8 +16,7 @@ import plan899 from '../../assets/image/899Plan.png';
 const PricePlan = () => {
   const location = useLocation();
   const history = useHistory();
-  const back = location.state?.back;
-  const price = location.state?.price;
+  const { canChoose, price } = QueryString.parse(location.search);
   const menuChoose = menu.filter((x) => x.plan == price);
   const [value, setValue] = useState('');
   const submitHandler = () => {
@@ -41,16 +41,15 @@ const PricePlan = () => {
       <div className={styles.screen}>
         <NavigationBar
           title={price + '方案'}
-          link={path.menu}
+          link={`${path.menu}?canChoose=${canChoose}`}
           linkFlag={true}
-          back={back}
         />
         <div className={styles.screenContent}>
           <div className={styles.mainContent}>
             <div className={styles.pricePlanImg}>
-              {price === 499 ? <img src={plan499}></img> : <></>}
-              {price === 699 ? <img src={plan699}></img> : <></>}
-              {price === 899 ? <img src={plan899}></img> : <></>}
+              {price === '499' ? <img src={plan499}></img> : <></>}
+              {price === '699' ? <img src={plan699}></img> : <></>}
+              {price === '899' ? <img src={plan899}></img> : <></>}
             </div>
             {menuChoose[0].planType.map((plan) => (
               <div
@@ -99,7 +98,11 @@ const PricePlan = () => {
                 </div>
               </div>
             ))}
-            <div className={back ? styles.button_hide : styles.button}>
+            <div
+              className={
+                canChoose == 'true' ? styles.button : styles.button_hide
+              }
+            >
               <Button
                 title={'選擇此方案'}
                 main={false}

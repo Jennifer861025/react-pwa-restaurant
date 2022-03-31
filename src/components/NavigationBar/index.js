@@ -12,7 +12,6 @@ const NavigationBar = (prop) => {
     linkFlag = false,
     rightLink,
     rightLinkFlag = false,
-    back = false,
   } = prop;
   return (
     <div className={styles.container}>
@@ -20,7 +19,7 @@ const NavigationBar = (prop) => {
       <div className={styles.navigationBar}>
         <div className={styles.navigationBar_side}>
           <Link
-            to={{ pathname: link, state: { back: back } }}
+            to={link}
             className={
               linkFlag ? styles.leftSide_icon : styles.leftSide_iconHide
             }

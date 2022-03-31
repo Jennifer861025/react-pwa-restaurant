@@ -24,9 +24,10 @@
   font-size: $cp-h1-size;
   color: $cp-text-blod-color;
   margin-top: $cp-phone-section-spacing;
+  margin-bottom: $cp-phone-section-spacing;
 }
 .form {
-  margin-top: $cp-phone-bar-spacing;
+  margin-top: $cp-phone-left-right-margin;
 }
 .form_inputArea {
   width: 300px;

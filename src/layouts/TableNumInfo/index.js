@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 
 const TableNumInfo = () => {
   // const history = useHistory();
+  const tableNum = JSON.parse(localStorage.getItem('reservationData')).tableNum;
   return (
     <Fragment>
       <Helmet>
@@ -21,10 +22,10 @@ const TableNumInfo = () => {
           <div className={styles.incTitle}>XRestaurant 國北店</div>
           <div className={styles.tableInfoArea}>
             <div className={styles.tableInfo_title}>您的餐桌編號</div>
-            <div className={styles.tableInfo_number}>12</div>
+            <div className={styles.tableInfo_number}>{tableNum}</div>
             <div className={styles.tableInfo_memo}>請稍候</div>
             <div>將由服務人員進行帶位</div>
-            <Link to={{ pathname: path.menu, state: { back: false } }}>
+            <Link to={`${path.menu}?canChoose=true`}>
               <Button title={'進入點餐'} marginTop={true} main={false}></Button>
             </Link>
           </div>

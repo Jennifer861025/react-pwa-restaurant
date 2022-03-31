@@ -1,17 +1,49 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import styles from './styles.module.scss';
 import { Link, useHistory } from 'react-router-dom';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 import Button from '../../components/Button';
+import { StoreContext } from '../../store/reducer';
+import { getWaitList, deleteWaitList } from '../../store/action';
 
+var getServerWaitList;
 const Waiting = () => {
+  const {
+    state: {
+      waitData: { waitNum },
+    },
+    dispatch,
+  } = useContext(StoreContext);
   const history = useHistory();
-  const cancelHandler = () => {
+  const waitTime = (waitNum - 1) * 15;
+  const phone = localStorage.getItem('phone');
+  const reservationData = JSON.parse(localStorage.getItem('reservationData'));
+  const waitData = JSON.parse(localStorage.getItem('waitData'));
+
+  const cancelHandler = async () => {
+    await deleteWaitList({
+      phone: phone,
+      waitLastNum: waitData.waitLastNum + 1,
+      reservationId: reservationData.reservationId,
+    });
     alert('已為您取消！');
+    clearInterval(getServerWaitList);
     history.push(path.bookingConfirm);
   };
+  const menuBtnHandler = () => {
+    console.log('!!!!!');
+    clearInterval(getServerWaitList);
+  };
+
+  useEffect(() => {
+    getServerWaitList = setInterval(() => {
+      getWaitList(dispatch);
+    }, 60000);
+    getWaitList(dispatch);
+  }, []);
+
   return (
     <Fragment>
       <Helmet>
@@ -27,19 +59,20 @@ const Waiting = () => {
           <div className={styles.numberArea}>
             <div className={styles.number}>0</div>
             <div className={styles.number}>0</div>
-            <div className={styles.number}>1</div>
+            <div className={styles.number}>{waitNum - 1}</div>
           </div>
           <div className={styles.waitTimeArea}>
             <div>預計等候時間</div>
-            <div className={styles.waitTime}>15</div>
+            <div className={styles.waitTime}>{waitTime}</div>
             <div>分鐘</div>
           </div>
           <div>請等候系統訊息通知</div>
-          <Link
-            to={{ pathname: path.menu, state: { back: true } }}
-            className={styles.button}
-          >
-            <Button title={'查看菜單'} marginTop={true}></Button>
+          <Link to={`${path.menu}?canChoose=false`} className={styles.button}>
+            <Button
+              title={'查看菜單'}
+              marginTop={true}
+              onClickHandler={menuBtnHandler}
+            ></Button>
           </Link>
           <Button title={'取消候位'} onClickHandler={cancelHandler}></Button>
         </div>

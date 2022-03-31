@@ -30,7 +30,7 @@ const Feedback = () => {
       setCoupon({
         phone: '1',
         couponValue: 50,
-        deadline: `${year}/${month}/${day}`,
+        deadline: `${year}-${month}-${day}`,
       });
     } else {
       alert('尚有問題未作答喔!');
