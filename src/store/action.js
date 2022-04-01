@@ -7,6 +7,8 @@ import {
   SET_RESERVATION_DATA,
   SET_WAITNUM,
   SET_COUPON,
+  SET_MEALHABIT,
+  GET_MEALHABIT_FINISH,
   BEGIN_DATA_REQUEST,
   SUCCESS_DATA_REQUEST,
   FAIL_DATA_REQUEST,
@@ -200,8 +202,9 @@ export const setWaitList = async (option) => {
   }
 };
 
-export const deleteWaitList = async (option) => {
+export const deleteWaitList = async (dispatch, option) => {
   const { phone, waitLastNum, reservationId } = option;
+  dispatch({ type: BEGIN_DATA_REQUEST });
   try {
     await waitListRef.doc(String(waitLastNum)).delete();
     await userRef
@@ -209,8 +212,12 @@ export const deleteWaitList = async (option) => {
       .collection('reservation')
       .doc(String(reservationId))
       .delete();
+    dispatch({
+      type: SUCCESS_DATA_REQUEST,
+    });
   } catch (err) {
     console.log(err);
+    dispatch({ type: FAIL_DATA_REQUEST });
   }
 };
 
@@ -268,5 +275,45 @@ export const deleteCoupon = async (option) => {
     console.log('Coupon successfully deleted!');
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const setMealHabit = async (dispatch, option) => {
+  const { phone, meatHabit, seafoodHabit } = option;
+  dispatch({ type: BEGIN_DATA_REQUEST });
+  try {
+    await userRef.doc(phone).collection('habits').doc('mealHabit').set({
+      meat: meatHabit,
+      allergy: seafoodHabit,
+    });
+    dispatch({ type: GET_MEALHABIT_FINISH });
+    dispatch({ type: SUCCESS_DATA_REQUEST });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: GET_MEALHABIT_FINISH });
+    dispatch({ type: FAIL_DATA_REQUEST });
+  }
+};
+
+export const getMealHabit = async (dispatch, option) => {
+  const { phone } = option;
+  dispatch({ type: BEGIN_DATA_REQUEST });
+  try {
+    const mealHabit = await userRef
+      .doc(phone)
+      .collection('habits')
+      .doc('mealHabit')
+      .get();
+    if (mealHabit.data() !== undefined) {
+      dispatch({ type: SET_MEALHABIT, payload: mealHabit.data() });
+      localStorage.setItem('mealHabitServer', JSON.stringify(mealHabit.data()));
+    } else {
+      var mealHabitData = { 'meat': [], 'allergy': [] };
+      dispatch({ type: SET_MEALHABIT, payload: mealHabitData });
+    }
+    dispatch({ type: SUCCESS_DATA_REQUEST });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: FAIL_DATA_REQUEST });
   }
 };

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect, useContext } from 'react';
 import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
@@ -6,92 +6,149 @@ import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 import Button from '../../components/Button';
 import habit from '../../assets/json/habit.json';
+import Loading from '../../components/Loading';
+import { StoreContext } from '../../store/reducer';
+import { setMealHabit, getMealHabit } from '../../store/action';
 
 const MealHabits = () => {
   const history = useHistory();
-  const a = [];
-  const [answer, setAnswer] = useState(a);
-  // const [stuAns, setStuAns] = useState(0);
-  // const [flag, setFlag] = useState(false);
-  // const [stuSelected, setStuSelected] = useState('');
+  const {
+    state: {
+      mealHabit: { meat, allergy, finish },
+      requestdata: { loading },
+    },
+    dispatch,
+  } = useContext(StoreContext);
+  const meatArray = [];
+  const seafoodArray = [];
+  const [meatHabit, setMeatHabit] = useState(meatArray);
+  const [seafoodHabit, setSeafoodHabit] = useState(seafoodArray);
+  const [loadingFlag, setLoadingFlag] = useState(true);
+  const phone = localStorage.getItem('phone');
 
-  const submitHandler = () => {
-    localStorage.setItem('mealHabits', JSON.stringify(answer));
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    setLoadingFlag(true);
+    await setMealHabit(dispatch, {
+      phone: phone,
+      meatHabit: meatHabit,
+      seafoodHabit: seafoodHabit,
+    });
+    const mealHabit = meatHabit.concat(seafoodHabit);
+    localStorage.setItem('mealHabits', JSON.stringify(mealHabit));
     history.push(path.order);
   };
 
-  const selectedChange = (e) => {
-    if (answer.includes(e) === false) {
-      const newAnswer = [...answer];
-      newAnswer.push(e);
-      if (e == 'seafood') {
-        const filterAnswer = newAnswer.filter((x) => x != 'shell');
-        setAnswer(filterAnswer);
-        return;
-      } else if (e == 'shell') {
-        const filterAnswer = newAnswer.filter((x) => x != 'seafood');
-        setAnswer(filterAnswer);
-        return;
+  useEffect(() => {
+    getMealHabit(dispatch, { phone: phone });
+  }, []);
+
+  useEffect(() => {
+    if (loading == false) {
+      if (finish == true) {
+        setMeatHabit(meat);
+        setSeafoodHabit(allergy);
+        setLoadingFlag(false);
       }
-      setAnswer(newAnswer);
-    } else {
-      const newAnswer = [...answer];
-      const filterAnswer = newAnswer.filter((x) => x != e);
-      setAnswer(filterAnswer);
+    }
+  }, [loading, finish]);
+
+  const selectedChange = (e, qTitle) => {
+    if (qTitle == 'meat') {
+      if (meatHabit.includes(e) === false) {
+        const newMeat = [...meatHabit];
+        newMeat.push(e);
+        setMeatHabit(newMeat);
+      } else {
+        const newMeat = [...meatHabit];
+        const filterMeat = newMeat.filter((x) => x != e);
+        setMeatHabit(filterMeat);
+      }
+    } else if (qTitle == 'seafood') {
+      if (seafoodHabit.includes(e) == false) {
+        if (seafoodHabit.length == 1) {
+          const newSeafood = [e];
+          setSeafoodHabit(newSeafood);
+        } else {
+          const newSeafood = [...seafoodHabit];
+          newSeafood.push(e);
+          setSeafoodHabit(newSeafood);
+        }
+      } else {
+        setSeafoodHabit([]);
+      }
+    }
+  };
+
+  const classNameHandler = (qTitle, optionValue) => {
+    if (qTitle == 'meat') {
+      if (meatHabit.includes(optionValue)) {
+        return true;
+      } else {
+        return false;
+      }
+    } else if (qTitle == 'seafood') {
+      if (seafoodHabit.includes(optionValue)) {
+        return true;
+      } else {
+        return false;
+      }
     }
   };
 
   return (
     <Fragment>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>用餐偏好</title>
-        <meta name="description" content="用餐偏好" />
-      </Helmet>
-      <div className={styles.screen}>
-        <NavigationBar title={'用餐偏好'} linkFlag={false} />
-        <div className={styles.screenContent}>
-          <form className={styles.form} onSubmit={submitHandler}>
-            {habit.map((q) =>
-              q.qID === 3 ? (
-                <></>
-              ) : (
-                <div key={q.qID} className={styles.question}>
-                  <label>{q.question}</label>
-                  {/* <input
-                  type="hidden"
-                  name="ans"
-                  id={`q${q.qID}`}
-                  value={answer[q.qID - 1]}
-                /> */}
-                  {q.options.map((option) => (
-                    <label
-                      key={option.id}
-                      className={
-                        answer.includes(option.value) == true
-                          ? styles.option_active
-                          : styles.option
-                      }
-                    >
-                      <input
-                        type="checkbox"
-                        name={'stuAnswer' + q.qID}
-                        value={option.value}
-                        onChange={(e) => selectedChange(e.target.value)}
-                        checked={answer.includes(option.value) == true}
-                      />
-                      {option.option}
-                    </label>
-                  ))}
+      {loadingFlag ? (
+        <Loading />
+      ) : (
+        <>
+          <Helmet>
+            <meta charSet="utf-8" />
+            <title>用餐偏好</title>
+            <meta name="description" content="用餐偏好" />
+          </Helmet>
+          <div className={styles.screen}>
+            <NavigationBar title={'用餐偏好'} linkFlag={false} />
+            <div className={styles.screenContent}>
+              <form className={styles.form} onSubmit={(e) => submitHandler(e)}>
+                {habit.map((q) =>
+                  q.qID === 3 ? (
+                    <></>
+                  ) : (
+                    <div key={q.qID} className={styles.question}>
+                      <label>{q.question}</label>
+                      {q.options.map((option) => (
+                        <label
+                          key={option.id}
+                          className={
+                            classNameHandler(q.title, option.value) == true
+                              ? styles.option_active
+                              : styles.option
+                          }
+                        >
+                          <input
+                            type="checkbox"
+                            name={'stuAnswer' + q.qID}
+                            value={option.value}
+                            //TODO:
+                            onChange={(e) =>
+                              selectedChange(e.target.value, q.title)
+                            }
+                          />
+                          {option.option}
+                        </label>
+                      ))}
+                    </div>
+                  ),
+                )}
+                <div className={styles.buttonArea}>
+                  <Button title={'開始點餐'} type="submit"></Button>
                 </div>
-              ),
-            )}
-            <div className={styles.buttonArea}>
-              <Button title={'開始點餐'} type="submit"></Button>
+              </form>
             </div>
-          </form>
-        </div>
-      </div>
+          </div>
+        </>
+      )}
     </Fragment>
   );
 };

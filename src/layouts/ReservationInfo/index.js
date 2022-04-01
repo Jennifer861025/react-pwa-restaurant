@@ -44,6 +44,7 @@ const ReservationInfo = () => {
       if (error == true) {
         setGetDataFlag(false);
       } else {
+        localStorage.setItem('phone', phoneNum);
         history.push(path.tableNumInfo);
       }
     }

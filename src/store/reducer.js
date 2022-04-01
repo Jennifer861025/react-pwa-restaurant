@@ -6,6 +6,8 @@ import {
   SET_RESERVATION_DATA,
   SET_WAITNUM,
   SET_COUPON,
+  SET_MEALHABIT,
+  GET_MEALHABIT_FINISH,
   BEGIN_DATA_REQUEST,
   SUCCESS_DATA_REQUEST,
   FAIL_DATA_REQUEST,
@@ -20,6 +22,7 @@ const initialState = {
   reservationData: { date: null, peopleNum: null, tableNum: null },
   waitData: { waitNum: null, waitLastNum: null },
   waitNum: null,
+  mealHabit: { meat: [], allergy: [], finish: false },
   coupon: [],
   requestdata: { loading: false, error: null },
 };
@@ -56,10 +59,32 @@ function reducer(state, action) {
         ...state,
         coupon: action.payload,
       };
+    case SET_MEALHABIT:
+      return {
+        ...state,
+        mealHabit: {
+          ...state.mealHabit,
+          meat: action.payload.meat,
+          allergy: action.payload.allergy,
+          finish: true,
+        },
+      };
+    case GET_MEALHABIT_FINISH:
+      return {
+        ...state,
+        mealHabit: {
+          ...state.mealHabit,
+          finish: true,
+        },
+      };
     case BEGIN_DATA_REQUEST:
       return {
         ...state,
         requestdata: { ...state.requestdata, loading: true, error: null },
+        mealHabit: {
+          ...state.mealHabit,
+          finish: false,
+        },
       };
     case SUCCESS_DATA_REQUEST:
       return {

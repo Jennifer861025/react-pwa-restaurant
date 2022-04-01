@@ -1,6 +1,7 @@
 [
     {
         "qID":1,
+        "title": "meat",
         "question": "1.請問您是否有不吃的肉類品項？(複）",
         "options":[
             {
@@ -22,6 +23,7 @@
     },
     {
         "qID":2,
+        "title": "seafood",
         "question": "2.請問您是否對以下品項過敏？(單）",
         "options":[
             {
@@ -38,6 +40,7 @@
     },
     {
         "qID":3,
+        "title": "pay",
         "question": "3. 請問您習慣的付費方式？(單）",
         "options":[
             {
