@@ -131,7 +131,6 @@ const MealHabits = () => {
                             type="checkbox"
                             name={'stuAnswer' + q.qID}
                             value={option.value}
-                            //TODO:
                             onChange={(e) =>
                               selectedChange(e.target.value, q.title)
                             }

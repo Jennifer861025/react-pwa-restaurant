@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import { deleteCoupon } from '../../store/action';
 
 const MealFinish = () => {
+  const phone = localStorage.getItem('phone');
   const couponChoose = JSON.parse(localStorage.getItem('couponChoose'))
     ? JSON.parse(localStorage.getItem('couponChoose'))
     : [];
@@ -16,8 +17,7 @@ const MealFinish = () => {
       couponChoose.couponId !== null ||
       couponChoose.couponId !== ''
     ) {
-      //TODO: 記得改phone
-      deleteCoupon({ phone: '1', couponId: couponChoose.couponId });
+      deleteCoupon({ phone: phone, couponId: couponChoose.couponId });
     }
   }, []);
   return (

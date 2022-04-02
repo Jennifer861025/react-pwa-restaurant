@@ -16,13 +16,13 @@ const Coupon = () => {
     dispatch,
   } = useContext(StoreContext);
 
+  const phone = localStorage.getItem('phone');
   const couponLastPage = localStorage.getItem('couponLastPage')
     ? localStorage.getItem('couponLastPage')
     : 'member';
 
   useEffect(() => {
-    //TODO: 修改 phone
-    getCoupon(dispatch, { phone: '1' });
+    getCoupon(dispatch, { phone: phone });
   }, []);
 
   return (

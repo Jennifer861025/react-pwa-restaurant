@@ -16,6 +16,7 @@ const Feedback = () => {
   const [flag, setFlag] = useState(false);
   const [stuSelected, setStuSelected] = useState('');
   const [doubleCheckShow, setDoubleCheckShow] = useState(false);
+  const phone = localStorage.getItem('phone');
 
   var date = new Date();
   var year = date.getFullYear();
@@ -26,9 +27,8 @@ const Feedback = () => {
     e.preventDefault();
     if (answer.length == feedback.length) {
       setDoubleCheckShow(true);
-      //TODO: 修改 phone
       setCoupon({
-        phone: '1',
+        phone: phone,
         couponValue: 50,
         deadline: `${year}-${month}-${day}`,
       });

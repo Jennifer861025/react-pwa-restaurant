@@ -21,6 +21,7 @@ const CouponChoose = () => {
     ? JSON.parse(localStorage.getItem('couponChoose'))
     : null;
   const history = useHistory();
+  const phone = localStorage.getItem('phone');
   const [id, setId] = useState(
     couponLocalStorage ? couponLocalStorage.couponId : null,
   );
@@ -43,8 +44,7 @@ const CouponChoose = () => {
   };
 
   useEffect(() => {
-    //TODO: 修改 phone
-    getCoupon(dispatch, { phone: '1' });
+    getCoupon(dispatch, { phone: phone });
   }, []);
 
   return (

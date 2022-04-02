@@ -54,7 +54,6 @@ const ReservationInfo = () => {
     console.log(error);
   }, [error]);
 
-  //TODO:這裡是畫面的開始
   return (
     <Fragment>
       {loading ? (
