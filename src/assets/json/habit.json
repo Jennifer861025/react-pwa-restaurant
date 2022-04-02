@@ -40,28 +40,23 @@
     },
     {
         "qID":3,
-        "title": "pay",
-        "question": "3. 請問您習慣的付費方式？(單）",
+        "title": "seat",
+        "question": "3. 請問您喜歡坐的位置？(單）",
         "options":[
             {
                 "id":1,
-                "option":"Line Pay",
-                "value":"linePay"
+                "option":"靠窗座位",
+                "value":"window"
             },
             {
                 "id":2,
-                "option":"Apple Pay",
-                "value":"applePay"
+                "option":"靠走道座位",
+                "value":"alley"
             },
             {
                 "id":3,
-                "option":"街口支付",
-                "value":"street"
-            },
-            {
-                "id":4,
-                "option":"臨櫃結帳",
-                "value":"counter"
+                "option":"靠近門口座位",
+                "value":"door"
             }
         ]
     }

@@ -8,13 +8,13 @@ import Button from '../../components/Button';
 import habit from '../../assets/json/habit.json';
 import Loading from '../../components/Loading';
 import { StoreContext } from '../../store/reducer';
-import { setMealHabit, getMealHabit } from '../../store/action';
+import { setUserHabit, getUserHabit } from '../../store/action';
 
 const MealHabits = () => {
   const history = useHistory();
   const {
     state: {
-      mealHabit: { meat, allergy, finish },
+      habit: { meat, allergy, seat, finish },
       requestdata: { loading },
     },
     dispatch,
@@ -29,10 +29,11 @@ const MealHabits = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     setLoadingFlag(true);
-    await setMealHabit(dispatch, {
+    await setUserHabit(dispatch, {
       phone: phone,
       meatHabit: meatHabit,
       seafoodHabit: seafoodHabit,
+      seatHabit: seat,
     });
     const mealHabit = meatHabit.concat(seafoodHabit);
     localStorage.setItem('mealHabits', JSON.stringify(mealHabit));
@@ -40,7 +41,7 @@ const MealHabits = () => {
   };
 
   useEffect(() => {
-    getMealHabit(dispatch, { phone: phone });
+    getUserHabit(dispatch, { phone: phone });
   }, []);
 
   useEffect(() => {

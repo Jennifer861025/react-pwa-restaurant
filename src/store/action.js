@@ -278,13 +278,16 @@ export const deleteCoupon = async (option) => {
   }
 };
 
-export const setMealHabit = async (dispatch, option) => {
-  const { phone, meatHabit, seafoodHabit } = option;
+export const setUserHabit = async (dispatch, option) => {
+  const { phone, meatHabit = [], seafoodHabit = [], seatHabit = [] } = option;
   dispatch({ type: BEGIN_DATA_REQUEST });
   try {
     await userRef.doc(phone).collection('habits').doc('mealHabit').set({
       meat: meatHabit,
       allergy: seafoodHabit,
+    });
+    await userRef.doc(phone).collection('habits').doc('seatHabit').set({
+      seat: seatHabit,
     });
     dispatch({ type: GET_MEALHABIT_FINISH });
     dispatch({ type: SUCCESS_DATA_REQUEST });
@@ -295,8 +298,13 @@ export const setMealHabit = async (dispatch, option) => {
   }
 };
 
-export const getMealHabit = async (dispatch, option) => {
+export const getUserHabit = async (dispatch, option) => {
   const { phone } = option;
+  var habitData = {
+    'meat': [],
+    'allergy': [],
+    'seat': [],
+  };
   dispatch({ type: BEGIN_DATA_REQUEST });
   try {
     const mealHabit = await userRef
@@ -304,12 +312,36 @@ export const getMealHabit = async (dispatch, option) => {
       .collection('habits')
       .doc('mealHabit')
       .get();
-    if (mealHabit.data() !== undefined) {
-      dispatch({ type: SET_MEALHABIT, payload: mealHabit.data() });
-      localStorage.setItem('mealHabitServer', JSON.stringify(mealHabit.data()));
+    const seatHabit = await userRef
+      .doc(phone)
+      .collection('habits')
+      .doc('seatHabit')
+      .get();
+    console.log(mealHabit.data());
+    console.log(seatHabit.data());
+    if (mealHabit.data() !== undefined && seatHabit.data() !== undefined) {
+      habitData = {
+        'meat': mealHabit.data().meat,
+        'allergy': mealHabit.data().allergy,
+        'seat': seatHabit.data().seat,
+      };
+      dispatch({ type: SET_MEALHABIT, payload: habitData });
+    } else if (mealHabit.data() == undefined && seatHabit.data() == undefined) {
+      dispatch({ type: SET_MEALHABIT, payload: habitData });
+    } else if (mealHabit.data() == undefined) {
+      habitData = {
+        'meat': [],
+        'allergy': [],
+        'seat': seatHabit.data().seat,
+      };
+      dispatch({ type: SET_MEALHABIT, payload: habitData });
     } else {
-      var mealHabitData = { 'meat': [], 'allergy': [] };
-      dispatch({ type: SET_MEALHABIT, payload: mealHabitData });
+      habitData = {
+        'meat': mealHabit.data().meat,
+        'allergy': mealHabit.data().allergy,
+        'seat': [],
+      };
+      dispatch({ type: SET_MEALHABIT, payload: habitData });
     }
     dispatch({ type: SUCCESS_DATA_REQUEST });
   } catch (err) {

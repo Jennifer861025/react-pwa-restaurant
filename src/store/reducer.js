@@ -22,7 +22,7 @@ const initialState = {
   reservationData: { date: null, peopleNum: null, tableNum: null },
   waitData: { waitNum: null, waitLastNum: null },
   waitNum: null,
-  mealHabit: { meat: [], allergy: [], finish: false },
+  habit: { meat: [], allergy: [], seat: [], finish: false },
   coupon: [],
   requestdata: { loading: false, error: null },
 };
@@ -62,18 +62,19 @@ function reducer(state, action) {
     case SET_MEALHABIT:
       return {
         ...state,
-        mealHabit: {
-          ...state.mealHabit,
+        habit: {
+          ...state.habit,
           meat: action.payload.meat,
           allergy: action.payload.allergy,
+          seat: action.payload.seat,
           finish: true,
         },
       };
     case GET_MEALHABIT_FINISH:
       return {
         ...state,
-        mealHabit: {
-          ...state.mealHabit,
+        habit: {
+          ...state.habit,
           finish: true,
         },
       };
@@ -81,8 +82,8 @@ function reducer(state, action) {
       return {
         ...state,
         requestdata: { ...state.requestdata, loading: true, error: null },
-        mealHabit: {
-          ...state.mealHabit,
+        habit: {
+          ...state.habit,
           finish: false,
         },
       };

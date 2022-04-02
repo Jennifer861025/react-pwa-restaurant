@@ -6,7 +6,7 @@ import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 import TabBar from '../../components/TabBar';
 import Button from '../../components/Button';
-import { getUser } from '../../store/action';
+// import { getUser } from '../../store/action';
 
 const Checkout = () => {
   const history = useHistory();
@@ -20,7 +20,7 @@ const Checkout = () => {
 
   useEffect(() => {
     console.log(feedbackFinish);
-    getUser();
+    // getUser();
   }, []);
   return (
     <Fragment>
