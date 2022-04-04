@@ -19,6 +19,16 @@
 .recordArea {
   margin-top: $cp-phone-main-spcing;
 }
+.recordArea_year_line{
+  width: 68px;
+  height: 8px;
+  background: $cp-btn-color;
+  border-radius: $cp-btn-border-radius;
+  margin-top: -10px;
+}
+.recordArea_year{
+  margin-bottom: $cp-phone-section-spacing;
+}
 .record {
   width: 340px;
   height: 90px;
@@ -28,5 +38,11 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: $cp-phone-main-spcing;
+}
+.icon{
+  color: $cp-btn-color;
+  font-size: 28px;
+  margin-top: -3px;
 }

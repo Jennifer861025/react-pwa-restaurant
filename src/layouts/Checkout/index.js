@@ -10,9 +10,22 @@ import Button from '../../components/Button';
 
 const Checkout = () => {
   const history = useHistory();
+
   const feedbackFinish = localStorage.getItem('feedbackFinish')
     ? JSON.parse(localStorage.getItem('feedbackFinish'))
     : false;
+
+  const reservationData = localStorage.getItem('reservationData')
+    ? JSON.parse(localStorage.getItem('reservationData'))
+    : { 'peopleNum': 0 };
+
+  const pricePlan = Number(localStorage.getItem('pricePlan'));
+
+  const couponValue = localStorage.getItem('couponChoose')
+    ? JSON.parse(localStorage.getItem('couponChoose')).couponValue
+    : 0;
+
+  const totalPrice = reservationData.peopleNum * pricePlan - couponValue;
 
   const feedbackBtnHandler = () => {
     history.push(path.feedback);
@@ -20,8 +33,8 @@ const Checkout = () => {
 
   useEffect(() => {
     console.log(feedbackFinish);
-    // getUser();
   }, []);
+
   return (
     <Fragment>
       <Helmet>
@@ -36,11 +49,27 @@ const Checkout = () => {
           <div className={styles.incTitle}>XRestaurant 國北店</div>
           <div className={styles.checkDetail}>
             <div className={styles.checkDetail_peopleNum}>
-              今日用餐人數：3人
+              今日用餐人數：{reservationData.peopleNum}人
+            </div>
+            <div className={styles.checkDetail_pricePlan}>
+              選擇的方案：{pricePlan}方案
             </div>
             <div className={styles.checkDetail_moneyArea}>
               <div>消費金額：</div>
-              <div className={styles.money}>1497元</div>
+              <div
+                className={couponValue == 0 ? styles.money : styles.money_red}
+              >
+                {totalPrice}元
+              </div>
+              <div
+                className={
+                  couponValue == 0
+                    ? styles.couponFinish_hide
+                    : styles.couponFinish
+                }
+              >
+                已折扣
+              </div>
             </div>
             <div className={styles.checkDetail_couponMemo}>
               幫助我們填寫用餐意見回饋<br></br>問卷，可享有優惠好禮！

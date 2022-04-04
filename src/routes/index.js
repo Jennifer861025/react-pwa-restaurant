@@ -28,6 +28,7 @@ import CouponChoose from '../layouts/CouponChoose';
 import MealFinish from '../layouts/MealFinish';
 import Member from '../layouts/Member';
 import ConsumerRecord from '../layouts/ConsumerRecord';
+import RecordData from '../layouts/RecordData';
 import Coupon from '../layouts/Coupon';
 import HabitSetting from '../layouts/HabitSetting';
 
@@ -110,6 +111,12 @@ const Routes = () => {
           <Route exact path={path.member} component={Member} />
           {/* 消費記錄 */}
           <Route exact path={path.consumerRecord} component={ConsumerRecord} />
+          {/* 消費記錄資料 */}
+          <Route
+            exact
+            path={`${path.consumerRecord}/recordInfo`}
+            component={RecordData}
+          />
           {/* 優惠券 */}
           <Route exact path={path.coupon} component={Coupon} />
           {/* 偏好設定 */}

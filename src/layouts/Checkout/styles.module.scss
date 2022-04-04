@@ -32,14 +32,29 @@
   align-items: center;
 }
 .checkDetail_peopleNum {
+  margin-bottom: 10px;
+}
+.checkDetail_pricePlan {
   margin-bottom: $cp-phone-secondary-spacing;
 }
 .checkDetail_moneyArea {
   display: flex;
+  align-items: center;
   margin-bottom: $cp-phone-main-spcing;
   font-size: $cp-h1-size;
-  .money{
+  .money {
     font-weight: bold;
+  }
+  .money_red {
+    font-weight: bold;
+    color: red;
+  }
+  .couponFinish {
+    font-size: 12px;
+    margin-left: 3px;
+  }
+  .couponFinish_hide {
+    display: none;
   }
 }
 .checkDetail_couponMemo {
@@ -59,7 +74,7 @@
   border: 0px;
   font-size: $cp-p-size;
   margin-bottom: $cp-phone-main-spcing;
-  &.button_disabled{
+  &.button_disabled {
     background: $cp-btn-border-color;
   }
 }
