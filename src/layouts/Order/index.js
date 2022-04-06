@@ -36,6 +36,9 @@ const Order = () => {
   const pastValue = localStorage.getItem('orderPageTypeValue')
     ? localStorage.getItem('orderPageTypeValue')
     : '';
+  const pastOrderArray = localStorage.getItem('orderArray')
+    ? JSON.parse(localStorage.getItem('orderArray'))
+    : [];
   const foodDetailFlag = localStorage.getItem('foodDetailFlag')
     ? JSON.parse(localStorage.getItem('foodDetailFlag'))
     : false;
@@ -65,6 +68,7 @@ const Order = () => {
     }
     if (foodDetailFlag == true) {
       setValue(pastValue);
+      setOrderArray(pastOrderArray);
       localStorage.setItem('foodDetailFlag', false);
     }
     if (localStorage.getItem('finishTime') == null) {
@@ -252,6 +256,10 @@ const Order = () => {
       setOrderArray(newArray);
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem('orderArray', JSON.stringify(orderArray));
+  }, [orderArray]);
 
   //食材資訊
   const FoodDetailHandler = (optionTitle) => {

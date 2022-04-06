@@ -73,6 +73,7 @@ export const getUser = async (dispatch, option) => {
           type: SET_USER,
           payload: userdata,
         });
+        localStorage.setItem('name', name);
         dispatch({ type: SUCCESS_DATA_REQUEST });
       } else {
         alert('已是會員，但資料輸入錯誤！！');
@@ -86,6 +87,7 @@ export const getUser = async (dispatch, option) => {
         type: SET_USER,
         payload: userdata,
       });
+      localStorage.setItem('name', name);
       dispatch({ type: SUCCESS_DATA_REQUEST });
       console.log('User successfully set!');
     }
@@ -105,6 +107,8 @@ export const getReservation = async (dispatch, option) => {
       .doc(reservationNum)
       .get();
     if (reservationData.exists) {
+      const usersDoc = await userRef.doc(phone).get();
+      localStorage.setItem('name', usersDoc.data().name);
       dispatch({
         type: SET_RESERVATION_DATA,
         payload: reservationData.data(),

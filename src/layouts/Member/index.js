@@ -10,6 +10,7 @@ import logo from '../../assets/image/logo5.png';
 
 const Member = () => {
   const history = useHistory();
+  const name = localStorage.getItem('name');
   const couponHandler = () => {
     localStorage.setItem('couponLastPage', 'member');
     history.push(path.coupon);
@@ -28,7 +29,7 @@ const Member = () => {
           <div className={styles.logoArea}>
             <img src={logo}></img>
           </div>
-          <div className={styles.member}>黃又影 您好！</div>
+          <div className={styles.member}>{name} 您好！</div>
           <Link to={path.consumerRecord} className={styles.button}>
             <Button title={'消費記錄'}></Button>
           </Link>

@@ -6,9 +6,9 @@ import styles from './styles.module.scss';
 import path from '../../utils/path';
 import NavigationBar from '../../components/NavigationBar';
 import Button from '../../components/Button';
-import menu from '../../assets/json/menu.json';
+import menu from '../../assets/json/menu2.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faStar } from '@fortawesome/free-solid-svg-icons';
 import plan499 from '../../assets/image/499Plan.png';
 import plan699 from '../../assets/image/699Plan.png';
 import plan899 from '../../assets/image/899Plan.png';
@@ -81,19 +81,25 @@ const PricePlan = () => {
                   }
                 >
                   <div className={styles.option_list}>
-                    {plan.typeOption.map((option) =>
-                      plan.type === 'seafood' ? (
-                        option.seafoodOption.map((seafoodOption) => (
-                          <div key={seafoodOption} className={styles.option}>
-                            {seafoodOption}
+                    {Number(price) > 499 ? (
+                      <>
+                        {plan.typeSpecial.map((option) => (
+                          <div className={styles.option} key={option}>
+                            <div className={styles.starIcon}>
+                              <FontAwesomeIcon icon={faStar} />
+                            </div>
+                            <div>{option}</div>
                           </div>
-                        ))
-                      ) : (
-                        <div key={option} className={styles.option}>
-                          {option}
-                        </div>
-                      ),
+                        ))}
+                      </>
+                    ) : (
+                      <></>
                     )}
+                    {plan.typeOption.map((option) => (
+                      <div key={option} className={styles.option}>
+                        {option}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

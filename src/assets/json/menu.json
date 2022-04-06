@@ -47,7 +47,7 @@
         ]
     },
     {
-        "planID":1,
+        "planID":2,
         "plan":699,
         "planType":[
             {
@@ -94,26 +94,29 @@
         ]
     },
     {
-        "planID":1,
+        "planID":3,
         "plan":899,
         "planType":[
             {
                 "typeID":1,
                 "type":"beef",
                 "typeName": "牛肉",
-                "typeOption":["照燒牛","韓式牛","牛舌","日本和牛"]
+                "typeOption":["照燒牛","韓式牛","牛舌","日本和牛"],
+                "typeSpecial":["日本和牛"]
             },  
             {
                 "typeID":2,
                 "type":"pork",
                 "typeName": "豬肉",
-                "typeOption":["梅花豬","五花豬","松阪豬","黑豚豬"]
+                "typeOption":["梅花豬","五花豬","松阪豬","黑豚豬"],
+                "typeSpecial":["黑豚豬"]
             }, 
             {
                 "typeID":3,
                 "type":"chicken",
                 "typeName": "雞肉",
-                "typeOption":["雞腿肉","辣雞翅","起司雞"]
+                "typeOption":["雞腿肉","辣雞翅","起司雞"],
+                "typeSpecial":["唧唧唧"]
             },
             {
                 "typeID":4,
@@ -136,7 +139,8 @@
                 "typeID":5,
                 "type":"vegetable",
                 "typeName": "蔬菜",
-                "typeOption":["四季豆","玉米","筊白筍","芥蘭"]
+                "typeOption":["四季豆","玉米","筊白筍","芥蘭"],
+                "typeSpecial":["芥蘭"]
             }
         ]
     }
