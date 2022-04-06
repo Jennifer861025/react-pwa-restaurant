@@ -1,0 +1,143 @@
+[
+    {
+        "planID":1,
+        "plan":499,
+        "planType":[
+            {
+                "typeID":1,
+                "type":"beef",
+                "typeName": "牛肉",
+                "typeOption":["照燒牛","韓式牛"]
+            },  
+            {
+                "typeID":2,
+                "type":"pork",
+                "typeName": "豬肉",
+                "typeOption":["梅花豬","五花豬"]
+            }, 
+            {
+                "typeID":3,
+                "type":"chicken",
+                "typeName": "雞肉",
+                "typeOption":["雞腿肉","辣雞翅"]
+            },
+            {
+                "typeID":4,
+                "type":"seafood",
+                "typeName": "海鮮",
+                "typeOption":[
+                    {
+                        "seafoodID":1,
+                        "seafoodType":"shell",
+                        "seafoodOption":["蝦子"]
+                    },
+                    {
+                        "seafoodID":2,
+                        "seafoodType":"normal",
+                        "seafoodOption":["鯖魚"]
+                    }
+                ]
+            },
+            {
+                "typeID":5,
+                "type":"vegetable",
+                "typeName": "蔬菜",
+                "typeOption":["四季豆","玉米"]
+            }
+        ]
+    },
+    {
+        "planID":1,
+        "plan":699,
+        "planType":[
+            {
+                "typeID":1,
+                "type":"beef",
+                "typeName": "牛肉",
+                "typeOption":["牛舌"]
+            },  
+            {
+                "typeID":2,
+                "type":"pork",
+                "typeName": "豬肉",
+                "typeOption":["松阪豬"]
+            }, 
+            {
+                "typeID":3,
+                "type":"chicken",
+                "typeName": "雞肉",
+                "typeOption":["起司雞"]
+            },
+            {
+                "typeID":4,
+                "type":"seafood",
+                "typeName": "海鮮",
+                "typeOption":[
+                    {
+                        "seafoodID":1,
+                        "seafoodType":"shell",
+                        "seafoodOption":["三點蟹"]
+                    },
+                    {
+                        "seafoodID":2,
+                        "seafoodType":"normal",
+                        "seafoodOption":["鱈魚"]
+                    }
+                ]
+            },
+            {
+                "typeID":5,
+                "type":"vegetable",
+                "typeName": "蔬菜",
+                "typeOption":["筊白筍"]
+            }
+        ]
+    },
+    {
+        "planID":1,
+        "plan":899,
+        "planType":[
+            {
+                "typeID":1,
+                "type":"beef",
+                "typeName": "牛肉",
+                "typeOption":["日本和牛"]
+            },  
+            {
+                "typeID":2,
+                "type":"pork",
+                "typeName": "豬肉",
+                "typeOption":["黑豚豬"]
+            }, 
+            {
+                "typeID":3,
+                "type":"chicken",
+                "typeName": "雞肉",
+                "typeOption":["唧唧唧"]
+            },
+            {
+                "typeID":4,
+                "type":"seafood",
+                "typeName": "海鮮",
+                "typeOption":[
+                    {
+                        "seafoodID":1,
+                        "seafoodType":"shell",
+                        "seafoodOption":["龍蝦"]
+                    },
+                    {
+                        "seafoodID":2,
+                        "seafoodType":"normal",
+                        "seafoodOption":["冰魚"]
+                    }
+                ]
+            },
+            {
+                "typeID":5,
+                "type":"vegetable",
+                "typeName": "蔬菜",
+                "typeOption":["芥蘭"]
+            }
+        ]
+    }
+]

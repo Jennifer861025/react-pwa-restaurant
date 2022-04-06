@@ -4,10 +4,12 @@ import styles from './styles.module.scss';
 // import path from '../../utils/path';
 import logo from '../../assets/image/logo5.png';
 import Button from '../../components/Button';
-import { deleteCoupon } from '../../store/action';
+import { deleteCoupon, setUserTotalPrice } from '../../store/action';
 
 const MealFinish = () => {
   const phone = localStorage.getItem('phone');
+  const historyId = localStorage.getItem('historyId');
+  const totalPrice = localStorage.getItem('totalPrice');
   const couponChoose = JSON.parse(localStorage.getItem('couponChoose'))
     ? JSON.parse(localStorage.getItem('couponChoose'))
     : [];
@@ -20,6 +22,15 @@ const MealFinish = () => {
       deleteCoupon({ phone: phone, couponId: couponChoose.couponId });
     }
   }, []);
+
+  const btnHandler = () => {
+    setUserTotalPrice({
+      phone: phone,
+      historyId: historyId,
+      totalPrice: totalPrice,
+    });
+  };
+
   return (
     <Fragment>
       <Helmet>
@@ -37,7 +48,7 @@ const MealFinish = () => {
             感謝您今日的用餐<br></br>
             歡迎您再度蒞臨本店
           </div>
-          <Button title={'回首頁'}></Button>
+          <Button title={'回首頁'} onClickHandler={btnHandler}></Button>
         </div>
       </div>
     </Fragment>

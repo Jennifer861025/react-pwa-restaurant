@@ -11,8 +11,7 @@ const FoodDetail = () => {
   const foodTitle = location.state?.foodTitle;
   const foodDetail = foodIntro.filter((x) => x.foodTitle == foodTitle)[0];
   useEffect(() => {
-    console.log(JSON.stringify(foodDetail));
-    console.log(foodDetail.foodCookTime);
+    localStorage.setItem('foodDetailFlag', JSON.stringify(true));
   }, []);
   return (
     <Fragment>

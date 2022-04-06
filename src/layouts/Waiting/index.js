@@ -21,16 +21,14 @@ const Waiting = () => {
   const history = useHistory();
   const waitTime = (waitNum - 1) * 15;
   const phone = localStorage.getItem('phone');
-  const reservationDataId = JSON.parse(
-    localStorage.getItem('reservationData'),
-  ).reservationId;
   const waitData = JSON.parse(localStorage.getItem('waitData'));
 
   const cancelHandler = async () => {
     await deleteWaitList(dispatch, {
       phone: phone,
       waitLastNum: waitData.waitLastNum + 1,
-      reservationId: reservationDataId,
+      reservationId: JSON.parse(localStorage.getItem('reservationData'))
+        .reservationId,
     });
     clearInterval(getServerWaitList);
     alert('已為您取消！');

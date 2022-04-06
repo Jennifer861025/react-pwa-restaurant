@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
@@ -13,6 +13,10 @@ const CheckoutOptions = () => {
     : 0;
   var price = priceInit - couponValue;
 
+  useEffect(() => {
+    localStorage.setItem('totalPrice', price);
+  }, []);
+
   return (
     <Fragment>
       <Helmet>
@@ -24,7 +28,7 @@ const CheckoutOptions = () => {
         <NavigationBar
           title={'結帳選擇'}
           link={path.checkout}
-          linkFlag={true}
+          linkFlag={false}
         />
         <div className={styles.screenContent}>
           <div className={styles.moneyArea}>

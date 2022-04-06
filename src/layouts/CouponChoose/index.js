@@ -38,14 +38,17 @@ const CouponChoose = () => {
     }
   };
   const submitHandler = () => {
-    var couponChoose = { 'couponId': id, 'couponValue': value };
-    localStorage.setItem('couponChoose', JSON.stringify(couponChoose));
     history.push(path.checkoutOptions);
   };
 
   useEffect(() => {
     getCoupon(dispatch, { phone: phone });
   }, []);
+
+  useEffect(() => {
+    var couponChoose = { 'couponId': id, 'couponValue': value };
+    localStorage.setItem('couponChoose', JSON.stringify(couponChoose));
+  }, [id, value]);
 
   return (
     <Fragment>

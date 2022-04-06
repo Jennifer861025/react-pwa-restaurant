@@ -9,6 +9,8 @@ import {
   SET_COUPON,
   SET_MEALHABIT,
   GET_MEALHABIT_FINISH,
+  SET_USER_HISTORY,
+  SET_USER_HISTORY_DETAIL,
   BEGIN_DATA_REQUEST,
   SUCCESS_DATA_REQUEST,
   FAIL_DATA_REQUEST,
@@ -344,6 +346,107 @@ export const getUserHabit = async (dispatch, option) => {
       dispatch({ type: SET_MEALHABIT, payload: habitData });
     }
     dispatch({ type: SUCCESS_DATA_REQUEST });
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: FAIL_DATA_REQUEST });
+  }
+};
+
+export const setOrderDetail = async (option) => {
+  const { orderDetail, tableNum } = option;
+  try {
+    await db.collection('orderDetail').doc(String(tableNum)).set({
+      orderDetail,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const setUserOrderDetail = async (option) => {
+  const { phone, pricePlan, date, tableNum, peopleNum, allOrderDetail } =
+    option;
+  try {
+    const orderDetail = await userRef.doc(phone).collection('history').add({
+      allOrderDetail,
+    });
+    await userRef.doc(phone).collection('history').doc(orderDetail.id).set(
+      {
+        id: orderDetail.id,
+        pricePlan: pricePlan,
+        date: date,
+        tableNum: tableNum,
+        peopleNum: peopleNum,
+      },
+      { merge: true },
+    );
+    localStorage.setItem('historyId', orderDetail.id);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const setUserTotalPrice = async (option) => {
+  const { phone, historyId, totalPrice } = option;
+  try {
+    await userRef.doc(phone).collection('history').doc(historyId).set(
+      {
+        totalPrice: totalPrice,
+      },
+      { merge: true },
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getUserHistory = async (dispatch, option) => {
+  const { phone } = option;
+  const userHistroyArray = [];
+  var userHistoryCount = 0;
+  dispatch({ type: BEGIN_DATA_REQUEST });
+  try {
+    const userHistory = await userRef.doc(phone).collection('history').get();
+    const historyLength = userHistory.docs.length;
+    if (historyLength == 0) {
+      dispatch({ type: SET_USER_HISTORY, payload: userHistroyArray });
+      dispatch({ type: SUCCESS_DATA_REQUEST });
+    } else {
+      userHistory.docs.map((x) => {
+        console.log(x.data());
+        userHistroyArray.push(x.data());
+        userHistoryCount += 1;
+        if (userHistoryCount == historyLength) {
+          dispatch({ type: SET_USER_HISTORY, payload: userHistroyArray });
+          dispatch({ type: SUCCESS_DATA_REQUEST });
+        }
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: FAIL_DATA_REQUEST });
+  }
+};
+
+export const getUserHistoryDetail = async (dispatch, option) => {
+  const { phone, historyId } = option;
+  dispatch({ type: BEGIN_DATA_REQUEST });
+  try {
+    const userHistoryDetail = await userRef
+      .doc(phone)
+      .collection('history')
+      .doc(historyId)
+      .get();
+    if (userHistoryDetail.exists) {
+      console.log(userHistoryDetail.data());
+      dispatch({
+        type: SET_USER_HISTORY_DETAIL,
+        payload: userHistoryDetail.data(),
+      });
+      dispatch({ type: SUCCESS_DATA_REQUEST });
+    } else {
+      dispatch({ type: SUCCESS_DATA_REQUEST });
+    }
   } catch (err) {
     console.log(err);
     dispatch({ type: FAIL_DATA_REQUEST });

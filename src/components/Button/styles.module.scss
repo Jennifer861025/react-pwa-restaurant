@@ -31,4 +31,7 @@
   &.marginTop {
     margin-top: $cp-phone-main-margin-top;
   }
+  &.disable {
+    background: $cp-btn-border-color;
+  }
 }

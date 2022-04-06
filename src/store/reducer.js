@@ -8,6 +8,8 @@ import {
   SET_COUPON,
   SET_MEALHABIT,
   GET_MEALHABIT_FINISH,
+  SET_USER_HISTORY,
+  SET_USER_HISTORY_DETAIL,
   BEGIN_DATA_REQUEST,
   SUCCESS_DATA_REQUEST,
   FAIL_DATA_REQUEST,
@@ -24,6 +26,15 @@ const initialState = {
   waitNum: null,
   habit: { meat: [], allergy: [], seat: [], finish: false },
   coupon: [],
+  userHistory: [],
+  historyDetail: {
+    allOrderDetail: [],
+    date: '',
+    peopleNum: 0,
+    pricePlan: 0,
+    tableNum: 0,
+    totalPrice: '',
+  },
   requestdata: { loading: false, error: null },
 };
 
@@ -76,6 +87,24 @@ function reducer(state, action) {
         habit: {
           ...state.habit,
           finish: true,
+        },
+      };
+    case SET_USER_HISTORY:
+      return {
+        ...state,
+        userHistory: action.payload,
+      };
+    case SET_USER_HISTORY_DETAIL:
+      return {
+        ...state,
+        historyDetail: {
+          ...state.historyDetail,
+          allOrderDetail: action.payload.allOrderDetail,
+          date: action.payload.date,
+          peopleNum: action.payload.peopleNum,
+          pricePlan: action.payload.pricePlan,
+          tableNum: action.payload.tableNum,
+          totalPrice: action.payload.totalPrice,
         },
       };
     case BEGIN_DATA_REQUEST:

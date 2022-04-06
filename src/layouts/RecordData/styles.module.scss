@@ -44,6 +44,9 @@
   padding: 0px $cp-phone-top-phone-spacing;
   border-radius: $cp-btn-border-radius;
   margin-top: $cp-phone-section-spacing;
+  &.recordArea_infoArea_detail{
+    padding: 15px $cp-phone-top-phone-spacing;;
+  }
 }
 .recordArea_info {
   width: 100%;
@@ -55,7 +58,17 @@
   &:nth-last-child(1) {
     border-bottom: 0px;
   }
+  &.recordArea_info_detail{
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
 }
 .record_number {
   color: $cp-main-color;
+}
+
+.detail{
+  margin: 4px 0px;
 }

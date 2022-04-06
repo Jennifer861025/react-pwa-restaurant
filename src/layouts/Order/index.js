@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { Fragment, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useHistory } from 'react-router-dom';
@@ -10,10 +9,14 @@ import Button from '../../components/Button';
 import menu from '../../assets/json/menu.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { setOrderDetail } from '../../store/action';
 
 var timeCount;
 const Order = () => {
   var day = new Date();
+  var nowYear = day.getFullYear();
+  var nowMonth = day.getMonth() + 1;
+  var nowDay = day.getDate();
   var nowHour = day.getHours();
   var nowMinute = day.getMinutes();
   var nowSecond = day.getSeconds();
@@ -22,10 +25,20 @@ const Order = () => {
   const [orderSecond, setSecond] = useState();
   const [value, setValue] = useState('');
   const [orderArray, setOrderArray] = useState([]);
+  const [finishFlag, setFinishFlag] = useState(false);
   const history = useHistory();
   const price = localStorage.getItem('pricePlan');
   const mealHabit = JSON.parse(localStorage.getItem('mealHabits'));
   const menuChoose = menu.filter((x) => x.plan == price);
+  const finishTimeData = localStorage.getItem('finishTimeDetail')
+    ? JSON.parse(localStorage.getItem('finishTimeDetail'))
+    : {};
+  const pastValue = localStorage.getItem('orderPageTypeValue')
+    ? localStorage.getItem('orderPageTypeValue')
+    : '';
+  const foodDetailFlag = localStorage.getItem('foodDetailFlag')
+    ? JSON.parse(localStorage.getItem('foodDetailFlag'))
+    : false;
 
   const zeroFill = (x) => {
     if (x < 10) {
@@ -42,26 +55,82 @@ const Order = () => {
   const timeArray = finishTime.split(':');
 
   useEffect(() => {
+    if (JSON.parse(localStorage.getItem('finishFlag'))) {
+      setFinishFlag(true);
+      setHour(0);
+      setMinute(0);
+      setSecond(0);
+      clearInterval(timeCount);
+      return;
+    }
+    if (foodDetailFlag == true) {
+      setValue(pastValue);
+      localStorage.setItem('foodDetailFlag', false);
+    }
     if (localStorage.getItem('finishTime') == null) {
+      localStorage.setItem(
+        'finishTimeDetail',
+        JSON.stringify({
+          'year': nowYear,
+          'month': nowMonth,
+          'day': nowDay,
+          'hour': nowHour + 2,
+          'minute': nowMinute,
+          'second': nowSecond,
+        }),
+      );
       localStorage.setItem(
         'finishTime',
         `${nowHour + 2}:${nowMinute}:${nowSecond}`,
       );
+    } else {
+      let date1 = new Date(
+        finishTimeData.year,
+        finishTimeData.month,
+        finishTimeData.day,
+        finishTimeData.hour,
+        finishTimeData.minute,
+        finishTimeData.second,
+      );
+      let date2 = new Date(
+        nowYear,
+        nowMonth,
+        nowDay,
+        nowHour,
+        nowMinute,
+        nowSecond,
+      );
+      if (date1.getTime() < date2.getTime()) {
+        clearInterval(timeCount);
+        setHour(0);
+        setMinute(0);
+        setSecond(0);
+      }
     }
     timeCount = setInterval(() => {
-      getOrderTime();
+      if (finishFlag == false) {
+        getOrderTime();
+      }
     }, 1000);
   }, []);
 
+  //用餐時間Finish設定
   useEffect(() => {
-    // console.log(`${orderHour}:${orderMinute}:${orderSecond}`);
-    if (orderHour == 0 && orderMinute == 0 && orderSecond == 0) {
+    if (
+      orderHour == 0 &&
+      orderMinute == 0 &&
+      orderSecond == 0 &&
+      finishFlag == false
+    ) {
       setSecond(0);
       alert('用餐時間已經到囉！');
       clearInterval(timeCount);
+      setFinishFlag(true);
+      localStorage.setItem('finishFlag', JSON.stringify(true));
     }
-  }, [orderHour, orderMinute, orderSecond]);
+  }, [orderHour, orderMinute, orderSecond, finishFlag]);
 
+  //用餐時間設定
   const getOrderTime = () => {
     var date = new Date();
     var currentHour = date.getHours();
@@ -126,6 +195,11 @@ const Order = () => {
     //挑選如果數量是0的項目，就不會在紀錄中顯示
     localStorage.setItem('orderDetail', JSON.stringify(orderDetail));
 
+    setOrderDetail({
+      orderDetail: orderDetail,
+      tableNum: JSON.parse(localStorage.getItem('reservationData')).tableNum,
+    });
+
     //存完之後，將點餐頁的Array清空
     var newArray = { ...orderArray };
     newArray = [];
@@ -179,13 +253,13 @@ const Order = () => {
     }
   };
 
-  //TODO:
+  //食材資訊
   const FoodDetailHandler = (optionTitle) => {
     const location = {
       pathname: path.foodDetail,
-      state: { foodTitle: optionTitle }
-    }
-    console.log('optionTitle: ' + optionTitle);
+      state: { foodTitle: optionTitle },
+    };
+    localStorage.setItem('orderPageTypeValue', value);
     history.push(location);
   };
 
@@ -255,7 +329,9 @@ const Order = () => {
                               >
                                 <div
                                   className={styles.optionTitle}
-                                  onClick={()=>FoodDetailHandler(seafoodOption)}
+                                  onClick={() =>
+                                    FoodDetailHandler(seafoodOption)
+                                  }
                                 >
                                   <div>{seafoodOption}</div>
                                   <div className={styles.optionIntroIcon}>
@@ -292,7 +368,7 @@ const Order = () => {
                           <div key={option} className={styles.option}>
                             <div
                               className={styles.optionTitle}
-                              onClick={()=>FoodDetailHandler(option)}
+                              onClick={() => FoodDetailHandler(option)}
                             >
                               <div>{option}</div>
                               <div className={styles.optionIntroIcon}>
@@ -334,6 +410,7 @@ const Order = () => {
                 title={'送出'}
                 main={false}
                 onClickHandler={submitHandler}
+                disable={finishFlag ? true : false}
               ></Button>
             </div>
           </div>

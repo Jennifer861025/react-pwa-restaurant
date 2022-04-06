@@ -4,15 +4,26 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 const Button = (prop) => {
-  const { title, main = true, marginTop = false, onClickHandler } = prop;
+  const {
+    title,
+    main = true,
+    marginTop = false,
+    onClickHandler,
+    disable = false,
+  } = prop;
   return (
     <button
       className={
         main
-          ? `${styles.button} ${marginTop ? styles.marginTop : ''}`
-          : `${styles.button_secondary} ${marginTop ? styles.marginTop : ''}`
+          ? `${styles.button} ${marginTop ? styles.marginTop : ''} ${
+              disable ? styles.disable : ''
+            }`
+          : `${styles.button_secondary} ${marginTop ? styles.marginTop : ''} ${
+              disable ? styles.disable : ''
+            }`
       }
       onClick={onClickHandler}
+      disabled={disable ? 'disabled' : ''}
     >
       {title}
     </button>
