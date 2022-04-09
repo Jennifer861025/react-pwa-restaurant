@@ -25,6 +25,17 @@ const Coupon = () => {
     getCoupon(dispatch, { phone: phone });
   }, []);
 
+  // useEffect(() => {
+  //   console.log(JSON.stringify(coupon));
+  //   coupon.map((x) => {
+  //     var newDate = x.deadline.replace(/-/g, '');
+  //     x.newDate = Number(newDate);
+  //   });
+  //   coupon.sort((a, b) => {
+  //     return a.newDate - b.newDate;
+  //   });
+  // }, [coupon]);
+
   return (
     <Fragment>
       {loading ? (

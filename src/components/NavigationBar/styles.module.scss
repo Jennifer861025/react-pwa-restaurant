@@ -39,6 +39,23 @@
   }
 }
 
+.tableNum {
+  width: 36px;
+  height: 36px;
+  font-size: $cp-p-size;
+  font-weight: bold;
+  border-radius: 50px;
+  border: 1px solid $cp-secondary-color;
+  background: $cp-secondary-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2px;
+}
+.tableNum_hide {
+  display: none;
+}
+
 .leftSide_icon {
   font-size: $cp-phone-secondary-spacing;
   transform: rotate(-180deg);

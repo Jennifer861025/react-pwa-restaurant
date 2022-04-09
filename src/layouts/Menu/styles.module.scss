@@ -11,15 +11,19 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  font-size: $cp-p-size;
+  font-size: $cp-h1-size;
   color: $cp-text-color;
   background: $cp-main-bg-color;
   padding-top: $cp-phone-full-bar-spacing;
 }
+.tableNum{
+  margin-top: $cp-phone-main-spcing;
+  margin-bottom: 12px;
+}
 .planArea {
   width: 100%;
-  height: 100%;
-  padding: $cp-phone-main-spcing 0;
+  height: 80%;
+  // padding: $cp-phone-main-spcing 0;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

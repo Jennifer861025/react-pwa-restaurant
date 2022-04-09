@@ -7,11 +7,14 @@ import NavigationBar from '../../components/NavigationBar';
 import Button from '../../components/Button';
 
 const CheckoutOptions = () => {
-  var priceInit = 1497;
+  const pricePlan = localStorage.getItem('pricePlan');
+  const peopleNum = JSON.parse(
+    localStorage.getItem('reservationData'),
+  ).peopleNum;
   const couponValue = JSON.parse(localStorage.getItem('couponChoose'))
     ? JSON.parse(localStorage.getItem('couponChoose')).couponValue
     : 0;
-  var price = priceInit - couponValue;
+  var price = pricePlan * peopleNum - couponValue;
 
   useEffect(() => {
     localStorage.setItem('totalPrice', price);

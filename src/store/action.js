@@ -241,8 +241,12 @@ export const getCoupon = async (dispatch, option) => {
       var couponCount = 0;
       coupon.docs.map((x) => {
         couponArray.push(x.data());
+        couponArray.map((x) => {
+          var newDate = x.deadline.replace(/-/g, '');
+          x.newDate = Number(newDate);
+        });
         couponArray.sort(function (a, b) {
-          return a.couponValue - b.couponValue;
+          return a.newDate - b.newDate;
         });
         couponCount += 1;
         if (couponCount == couponLength) {

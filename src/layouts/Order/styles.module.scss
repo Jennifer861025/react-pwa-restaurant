@@ -85,10 +85,14 @@
 .optionTitle {
   display: flex;
 }
+.optionTitle_red{
+  color: red;
+}
 .optionIntroIcon {
   font-size: 24px;
   color: $cp-btn-color;
-  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: -3px;
 }
 .numberControl {
   display: flex;

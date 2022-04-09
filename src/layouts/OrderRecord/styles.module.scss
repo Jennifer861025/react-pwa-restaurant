@@ -3,7 +3,7 @@
 @import '../../styles/font.scss';
 
 .screen {
-  height: 100vh;
+  height: 100%;
 }
 .screenContent {
   width: 100vw;
@@ -41,6 +41,18 @@
   border-radius: $cp-btn-border-radius;
   margin-top: $cp-phone-section-spacing;
 }
+.orderArea_time {
+  margin-top: $cp-phone-section-spacing;
+  display: flex;
+  justify-content: center;
+  .time{
+    color: red;
+    font-weight: bold;
+  }
+}
+.orderArea_time_hide {
+  display: none;
+}
 .detailArea_detail {
   width: 100%;
   height: 56px;
@@ -54,4 +66,15 @@
 }
 .detail_number {
   color: $cp-main-color;
+}
+
+.optionDetail {
+  display: flex;
+  align-items: center;
+}
+.optionIntroIcon {
+  font-size: 24px;
+  color: $cp-btn-color;
+  margin-right: 5px;
+  margin-top: -3px;
 }

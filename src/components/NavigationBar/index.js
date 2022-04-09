@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import styles from './styles.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faList } from '@fortawesome/free-solid-svg-icons';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import record from '../../assets/image/record.png';
 
 const NavigationBar = (prop) => {
   const {
@@ -12,6 +13,8 @@ const NavigationBar = (prop) => {
     linkFlag = false,
     rightLink,
     rightLinkFlag = false,
+    tableNumFlag = false,
+    tableNum,
   } = prop;
   return (
     <div className={styles.container}>
@@ -27,7 +30,16 @@ const NavigationBar = (prop) => {
             <FontAwesomeIcon icon={faPlay} />
           </Link>
         </div>
-        <div className={styles.navigationBar_side}>{title}</div>
+        <div className={styles.navigationBar_side}>
+          <div
+            className={
+              tableNumFlag == true ? styles.tableNum : styles.tableNum_hide
+            }
+          >
+            {tableNum}
+          </div>
+          <div>{title}</div>
+        </div>
         <div className={styles.navigationBar_side}>
           <Link
             to={rightLink}
@@ -35,7 +47,10 @@ const NavigationBar = (prop) => {
               rightLinkFlag ? styles.rightSide_icon : styles.rightSide_iconHide
             }
           >
-            <FontAwesomeIcon icon={faList} />
+            {/* <FontAwesomeIcon icon={faList} /> */}
+            <div>
+              <img src={record}></img>
+            </div>
           </Link>
         </div>
       </div>

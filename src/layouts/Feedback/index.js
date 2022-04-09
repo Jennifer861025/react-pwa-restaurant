@@ -30,11 +30,18 @@ const Feedback = () => {
       setCoupon({
         phone: phone,
         couponValue: 50,
-        deadline: `${year}-${month}-${day}`,
+        deadline: `${zeroFill(year)}-${zeroFill(month)}-${zeroFill(day)}`,
       });
     } else {
       alert('尚有問題未作答喔!');
     }
+  };
+
+  const zeroFill = (x) => {
+    if (x < 10) {
+      x = `0${x}`;
+    }
+    return x;
   };
 
   const selectedChange = (e) => {

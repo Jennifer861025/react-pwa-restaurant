@@ -32,6 +32,17 @@ const ConsumerRecord = () => {
   }, []);
 
   useEffect(() => {
+    userHistory.map((x) => {
+      var newDate = x.date.replace('/', '');
+      newDate = newDate.replace('/', '');
+      x.newDate = Number(newDate);
+    });
+    userHistory.sort((a, b) => {
+      return b.newDate - a.newDate;
+    });
+  }, [loading, userHistory]);
+
+  useEffect(() => {
     console.log(JSON.stringify(userHistory));
   }, [userHistory]);
 

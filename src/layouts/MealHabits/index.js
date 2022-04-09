@@ -35,11 +35,14 @@ const MealHabits = () => {
       seafoodHabit: seafoodHabit,
       seatHabit: seat,
     });
-    const mealHabit = meatHabit.concat(seafoodHabit);
-    localStorage.setItem('mealHabits', JSON.stringify(mealHabit));
+    localStorage.setItem('mealHabitsFlag', true);
     history.push(path.order);
   };
 
+  useEffect(() => {
+    const userMealHabit = meatHabit.concat(seafoodHabit);
+    localStorage.setItem('mealHabits', JSON.stringify(userMealHabit));
+  }, [meatHabit, seafoodHabit]);
   useEffect(() => {
     getUserHabit(dispatch, { phone: phone });
   }, []);

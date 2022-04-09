@@ -19,8 +19,10 @@ const PricePlan = () => {
   const { canChoose, price } = QueryString.parse(location.search);
   const menuChoose = menu.filter((x) => x.plan == price);
   const [value, setValue] = useState('');
+
   const submitHandler = () => {
     localStorage.setItem('pricePlan', price);
+    localStorage.setItem('pricePlanFlag', true);
     history.push(path.mealHabits);
   };
   const buttonHandler = (valueClick) => {

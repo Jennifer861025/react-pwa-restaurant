@@ -10,6 +10,7 @@ import menu from '../../assets/json/menu.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { setOrderDetail } from '../../store/action';
+import DoubleCheckModel from '../../components/DoubleCheckModel';
 
 var timeCount;
 const Order = () => {
@@ -24,8 +25,12 @@ const Order = () => {
   const [orderMinute, setMinute] = useState();
   const [orderSecond, setSecond] = useState();
   const [value, setValue] = useState('');
-  const [orderArray, setOrderArray] = useState([]);
+  var arrayInit = [];
+  const [orderArray, setOrderArray] = useState(arrayInit);
   const [finishFlag, setFinishFlag] = useState(false);
+  const [doubleCheckShow, setDoubleCheckShow] = useState(false);
+  const [alertOption, setAlertOption] = useState('');
+  const [alertOptionArray, setAlertOptionArray] = useState(arrayInit);
   const history = useHistory();
   const price = localStorage.getItem('pricePlan');
   const mealHabit = JSON.parse(localStorage.getItem('mealHabits'));
@@ -42,6 +47,13 @@ const Order = () => {
   const foodDetailFlag = localStorage.getItem('foodDetailFlag')
     ? JSON.parse(localStorage.getItem('foodDetailFlag'))
     : false;
+  const tableNum = JSON.parse(localStorage.getItem('reservationData')).tableNum;
+  const orderSubmitFlag = localStorage.getItem('orderSubmitFlag')
+    ? JSON.parse(localStorage.getItem('orderSubmitFlag'))
+    : false;
+  const orderDetail = localStorage.getItem('orderDetail')
+    ? JSON.parse(localStorage.getItem('orderDetail'))
+    : [{ 'option': '' }];
 
   const zeroFill = (x) => {
     if (x < 10) {
@@ -64,9 +76,10 @@ const Order = () => {
       setMinute(0);
       setSecond(0);
       clearInterval(timeCount);
+      history.push(path.checkout);
       return;
     }
-    if (foodDetailFlag == true) {
+    if (foodDetailFlag == true && orderSubmitFlag == false) {
       setValue(pastValue);
       setOrderArray(pastOrderArray);
       localStorage.setItem('foodDetailFlag', false);
@@ -105,12 +118,14 @@ const Order = () => {
         nowSecond,
       );
       if (date1.getTime() < date2.getTime()) {
+        console.log('!!!!!!!');
         clearInterval(timeCount);
         setHour(0);
         setMinute(0);
         setSecond(0);
       }
     }
+    localStorage.setItem('orderSubmitFlag', false);
     timeCount = setInterval(() => {
       if (finishFlag == false) {
         getOrderTime();
@@ -127,10 +142,11 @@ const Order = () => {
       finishFlag == false
     ) {
       setSecond(0);
-      alert('用餐時間已經到囉！');
+      alert('用餐時間已經到囉！請前往結帳！');
       clearInterval(timeCount);
       setFinishFlag(true);
       localStorage.setItem('finishFlag', JSON.stringify(true));
+      history.push(path.checkout);
     }
   }, [orderHour, orderMinute, orderSecond, finishFlag]);
 
@@ -171,6 +187,8 @@ const Order = () => {
   const submitHandler = () => {
     alert('餐點將盡快為您送達！');
 
+    localStorage.setItem('orderSubmitFlag', true);
+
     const orderDetail = orderArray.filter((x) => x.number !== 0);
     var allOrderDetail = JSON.parse(localStorage.getItem('allOrderDetail'));
     var preOrderDetail = JSON.parse(localStorage.getItem('orderDetail'));
@@ -201,7 +219,7 @@ const Order = () => {
 
     setOrderDetail({
       orderDetail: orderDetail,
-      tableNum: JSON.parse(localStorage.getItem('reservationData')).tableNum,
+      tableNum: tableNum,
     });
 
     //存完之後，將點餐頁的Array清空
@@ -244,6 +262,16 @@ const Order = () => {
 
   //加號按鈕控制
   const plusHandler = (option) => {
+    if (orderDetail.some((x) => x.option == option)) {
+      if (alertOptionArray.includes(option) == false) {
+        var checkArray = [...alertOptionArray];
+        checkArray.push(option);
+        setAlertOptionArray(checkArray);
+        setAlertOption(option);
+        setDoubleCheckShow(true);
+        return;
+      }
+    }
     const newArray = [...orderArray];
     var newObj = {};
     if (newArray.some((x) => x.option == option) == false) {
@@ -257,6 +285,23 @@ const Order = () => {
     }
   };
 
+  const leftBtnHandler = () => {
+    var checkArray = [...alertOptionArray];
+    checkArray = checkArray.filter((x) => x !== alertOption);
+    setAlertOptionArray(checkArray);
+    setDoubleCheckShow(false);
+  };
+
+  const rightBtnHandler = () => {
+    plusHandler(alertOption);
+    setDoubleCheckShow(false);
+  };
+
+  useEffect(() => {
+    console.log('alertOptionArray: ' + JSON.stringify(alertOptionArray));
+    console.log('alertOption: ' + alertOption);
+  }, [alertOptionArray, alertOption]);
+
   useEffect(() => {
     localStorage.setItem('orderArray', JSON.stringify(orderArray));
   }, [orderArray]);
@@ -267,9 +312,12 @@ const Order = () => {
       pathname: path.foodDetail,
       state: { foodTitle: optionTitle },
     };
-    localStorage.setItem('orderPageTypeValue', value);
     history.push(location);
   };
+
+  useEffect(() => {
+    localStorage.setItem('orderPageTypeValue', value);
+  }, [value]);
 
   return (
     <Fragment>
@@ -278,12 +326,26 @@ const Order = () => {
         <title>點餐</title>
         <meta name="description" content="點餐" />
       </Helmet>
+      <DoubleCheckModel
+        show={doubleCheckShow}
+        closeHandler={() => setDoubleCheckShow(false)}
+        modalTitle={'食材已加點正在準備中！'}
+        modalBody={
+          '您在上次的菜單點選已選擇此食材，若您確定需要繼續加點請點選確定！'
+        }
+        leftBtnTitle={'取消'}
+        leftBtnHandler={leftBtnHandler}
+        rightBtnTitle={'確定'}
+        rightBtnHandler={rightBtnHandler}
+      />
       <div className={styles.screen}>
         <NavigationBar
-          title={'點餐'}
+          title={'桌點餐'}
           linkFlag={false}
           rightLink={path.orderRecord}
           rightLinkFlag={true}
+          tableNumFlag={true}
+          tableNum={tableNum}
         />
         <TabBar order={true} />
         <div className={styles.screenContent}>
@@ -341,9 +403,19 @@ const Order = () => {
                                     FoodDetailHandler(seafoodOption)
                                   }
                                 >
-                                  <div>{seafoodOption}</div>
                                   <div className={styles.optionIntroIcon}>
                                     <FontAwesomeIcon icon={faInfoCircle} />
+                                  </div>
+                                  <div
+                                    className={
+                                      orderDetail.some(
+                                        (x) => x.option == seafoodOption,
+                                      )
+                                        ? styles.optionTitle_red
+                                        : ''
+                                    }
+                                  >
+                                    {seafoodOption}
                                   </div>
                                 </div>
                                 <div className={styles.numberControl}>
@@ -378,9 +450,17 @@ const Order = () => {
                               className={styles.optionTitle}
                               onClick={() => FoodDetailHandler(option)}
                             >
-                              <div>{option}</div>
                               <div className={styles.optionIntroIcon}>
                                 <FontAwesomeIcon icon={faInfoCircle} />
+                              </div>
+                              <div
+                                className={
+                                  orderDetail.some((x) => x.option == option)
+                                    ? styles.optionTitle_red
+                                    : ''
+                                }
+                              >
+                                {option}
                               </div>
                             </div>
                             <div className={styles.numberControl}>
