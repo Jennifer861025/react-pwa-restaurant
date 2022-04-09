@@ -44,6 +44,9 @@ export const getToken = async (setTokenFound) => {
     if (currentToken) {
       console.log('token : ' + currentToken);
       setTokenFound(true);
+      db.collection('token').add({
+        token: currentToken,
+      });
     } else {
       setTokenFound(false);
     }

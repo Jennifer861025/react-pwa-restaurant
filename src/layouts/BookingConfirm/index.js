@@ -6,10 +6,12 @@ import styles from './styles.module.scss';
 import logo from '../../assets/image/logo5.png';
 import path from '../../utils/path';
 import Button from '../../components/Button';
+import { getToken } from '../../store/action';
 
 const BookingConfirm = () => {
   useEffect(() => {
     localStorage.clear();
+    getToken();
   }, []);
   return (
     <Fragment>
