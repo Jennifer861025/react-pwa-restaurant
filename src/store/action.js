@@ -469,6 +469,7 @@ export const setReservation = async (dispatch, option) => {
   const { name, phone, date, peopleNum, time, seatArray } = option;
   dispatch({ type: BEGIN_DATA_REQUEST });
   const randomNum = Math.floor(Math.random() * 10000);
+  const tableNum = Math.floor(Math.random() * 100);
   try {
     await userRef.doc(phone).set({
       name: name,
@@ -479,9 +480,10 @@ export const setReservation = async (dispatch, option) => {
       .doc(String(randomNum))
       .set({
         date: date,
-        peopleNum: peopleNum,
+        peopleNum: Number(peopleNum),
         time: time,
         id: randomNum,
+        tableNum: tableNum,
       });
     await userRef.doc(phone).collection('habits').doc('seatHabit').set({
       seat: seatArray,
