@@ -20,4 +20,6 @@ export default {
   consumerRecord: '/consumerRecord',
   coupon: '/coupon',
   habitSetting: '/habitSetting',
+  home: '/home',
+  reservation: '/reservation',
 };

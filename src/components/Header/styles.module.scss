@@ -1,0 +1,31 @@
+@import '../../styles/color.scss';
+@import '../../styles/font.scss';
+@import '../../styles/spacing.scss';
+
+.header {
+  height: 80px;
+  color: $cp-secondary-bg-color;
+  background: $cp-btn-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px $cp-phone-bar-spacing;
+  .header_leftSide {
+    display: flex;
+    align-items: center;
+    .logoSide{
+      width: 60px;
+      height: 60px;
+      margin-right: 15px;
+      .logo{
+        width: 100%;
+      }
+    }
+  }
+  .header_rightSide{
+    display: flex;
+    .header_link {
+      margin-left: 30px;
+    }
+  }
+}

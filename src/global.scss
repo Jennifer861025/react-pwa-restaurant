@@ -39,8 +39,8 @@
  textarea,
  input {
    /* stylelint-disable-next-line property-no-vendor-prefix */
-   -webkit-appearance: none;
-   border-radius: 0;
+  //  -webkit-appearance: none;
+  //  border-radius: 0;
  
    &::placeholder {
      color: var(--light-gray);
@@ -58,7 +58,7 @@
    &::-webkit-outer-spin-button,
    &::-webkit-inner-spin-button {
      /* stylelint-disable-next-line property-no-vendor-prefix */
-     -webkit-appearance: none;
+    //  -webkit-appearance: none;
      margin: 0;
    }
  

@@ -1,14 +1,46 @@
 @import '../../styles/spacing.scss';
+@import '../../styles/font.scss';
 @import '../../styles/color.scss';
+a{
+  color:$cp-title-color;
+}
+a:hover {
+  color: $cp-secondHeader-bg-color;
+}
 .screen {
-  height: 100vh;
+  height: 100%;
 }
 .screenContent {
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
+  font-size: $cp-p-size;
   background: $cp-main-bg-color;
 }
+.content{
+  padding: 50px 120px;
+  display: flex;
+  justify-content: space-between;
+}
+.content_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imgArea{
+  height: 360px;
+  .img{
+    height: 100%;
+    border-radius: $cp-btn-border-radius;
+  }
+}
+
+.title{
+  font-size: 28px;
+  font-weight: bold;
+  margin: $cp-phone-secondary-spacing 0px;
+}
+.description{
+  width: 515px;
+  margin: 0px 0px $cp-phone-left-right-margin 28px;
+}
+

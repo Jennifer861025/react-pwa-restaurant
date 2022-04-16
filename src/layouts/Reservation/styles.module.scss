@@ -1,0 +1,62 @@
+@import '../../styles/spacing.scss';
+@import '../../styles/font.scss';
+@import '../../styles/color.scss';
+.screen {
+  height: 100%;
+}
+.screenContent {
+  height: 100%;
+  font-size: $cp-p-size;
+  background: $cp-main-bg-color;
+}
+.content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bannerArea {
+  margin-top: $cp-phone-bar-spacing;
+  margin-bottom: $cp-phone-main-spcing;
+}
+.content_content{
+  width: 1081px;
+}
+.title{
+  font-size: 28px;
+  font-weight: bold;
+}
+.hr{
+  border: 0.5px solid #000;
+}
+.form {
+  width: 1081px;
+  padding: $cp-phone-secondary-spacing;
+}
+.input_section {
+  display: flex;
+  margin-bottom: $cp-phone-secondary-spacing;
+}
+.form_inputArea{
+  display: flex;
+  margin-right: $cp-phone-bar-spacing;
+}
+.label {
+  margin-right: 15px;
+}
+.input_box {
+  width: 250px;
+  height: 40px;
+  border-radius:5px;
+  border: 1px solid #000;
+}
+.radio_label {
+  margin-right: 20px;
+}
+.button {
+  width: 1081px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -100px;
+  margin-bottom: 40px;
+  margin-left: -30px;
+}

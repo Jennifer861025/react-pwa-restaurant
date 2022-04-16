@@ -11,6 +11,7 @@ import {
   GET_MEALHABIT_FINISH,
   SET_USER_HISTORY,
   SET_USER_HISTORY_DETAIL,
+  SET_RESERVATION_NUM,
   BEGIN_DATA_REQUEST,
   SUCCESS_DATA_REQUEST,
   FAIL_DATA_REQUEST,
@@ -458,6 +459,35 @@ export const getUserHistoryDetail = async (dispatch, option) => {
     } else {
       dispatch({ type: SUCCESS_DATA_REQUEST });
     }
+  } catch (err) {
+    console.log(err);
+    dispatch({ type: FAIL_DATA_REQUEST });
+  }
+};
+
+export const setReservation = async (dispatch, option) => {
+  const { name, phone, date, peopleNum, time, seatArray } = option;
+  dispatch({ type: BEGIN_DATA_REQUEST });
+  const randomNum = Math.floor(Math.random() * 10000);
+  try {
+    await userRef.doc(phone).set({
+      name: name,
+    });
+    await userRef
+      .doc(phone)
+      .collection('reservation')
+      .doc(String(randomNum))
+      .set({
+        date: date,
+        peopleNum: peopleNum,
+        time: time,
+        id: randomNum,
+      });
+    await userRef.doc(phone).collection('habits').doc('seatHabit').set({
+      seat: seatArray,
+    });
+    dispatch({ type: SET_RESERVATION_NUM, payload: randomNum });
+    dispatch({ type: SUCCESS_DATA_REQUEST });
   } catch (err) {
     console.log(err);
     dispatch({ type: FAIL_DATA_REQUEST });

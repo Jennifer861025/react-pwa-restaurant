@@ -9,7 +9,8 @@ import Notifications from '../components/Notifications/Notifications';
 import ReactNotificationComponent from '../components/Notifications/ReactNotification';
 import { onMessageListener } from '../store/action';
 
-// import HomePage from '../layouts/Home';
+import HomePage from '../layouts/Home';
+import ReservationPage from '../layouts/Reservation';
 import BookingConfirmPage from '../layouts/BookingConfirm';
 import ReservationInfo from '../layouts/ReservationInfo';
 import TableNumInfo from '../layouts/TableNumInfo';
@@ -61,8 +62,10 @@ const Routes = () => {
       <Notifications />
       <Router>
         <Switch>
-          {/* 首頁
-          <Route exact path={path.home} component={HomePage} /> */}
+          {/* 網頁首頁 */}
+          <Route exact path={path.home} component={HomePage} />
+          {/* 網頁訂位 */}
+          <Route exact path={path.reservation} component={ReservationPage} />
           {/* 確認訂位 */}
           <Route
             exact

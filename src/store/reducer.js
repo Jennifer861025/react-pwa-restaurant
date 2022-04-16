@@ -10,6 +10,7 @@ import {
   GET_MEALHABIT_FINISH,
   SET_USER_HISTORY,
   SET_USER_HISTORY_DETAIL,
+  SET_RESERVATION_NUM,
   BEGIN_DATA_REQUEST,
   SUCCESS_DATA_REQUEST,
   FAIL_DATA_REQUEST,
@@ -27,6 +28,7 @@ const initialState = {
   habit: { meat: [], allergy: [], seat: [], finish: false },
   coupon: [],
   userHistory: [],
+  reservationNum: null,
   historyDetail: {
     allOrderDetail: [],
     date: '',
@@ -106,6 +108,11 @@ function reducer(state, action) {
           tableNum: action.payload.tableNum,
           totalPrice: action.payload.totalPrice,
         },
+      };
+    case SET_RESERVATION_NUM:
+      return {
+        ...state,
+        reservationNum: action.payload,
       };
     case BEGIN_DATA_REQUEST:
       return {
