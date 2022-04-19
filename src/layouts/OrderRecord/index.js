@@ -9,7 +9,9 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const OrderRecord = () => {
   const history = useHistory();
-  const orderDetail = JSON.parse(localStorage.getItem('orderDetail'));
+  const orderDetail = localStorage.getItem('orderDetail')
+    ? JSON.parse(localStorage.getItem('orderDetail'))
+    : [];
   const allOrderDetail = JSON.parse(localStorage.getItem('allOrderDetail'));
 
   const time = orderDetail.length * 8;

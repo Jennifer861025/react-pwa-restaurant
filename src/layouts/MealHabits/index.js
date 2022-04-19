@@ -137,6 +137,7 @@ const MealHabits = () => {
                             onChange={(e) =>
                               selectedChange(e.target.value, q.title)
                             }
+                            className={styles.input}
                           />
                           {option.option}
                         </label>

@@ -108,6 +108,7 @@ const Feedback = () => {
                   name="ans"
                   id={`q${q.qID}`}
                   value={answer[q.qID - 1]}
+                  className={styles.input}
                 />
                 {q.options.map((option) => (
                   <label
@@ -124,6 +125,7 @@ const Feedback = () => {
                       value={q.qID + '-' + option.id}
                       onChange={(e) => selectedChange(e.target.value)}
                       checked={answer[q.qID - 1] == q.qID + '-' + option.id}
+                      className={styles.input}
                     />
                     {option.option}
                   </label>

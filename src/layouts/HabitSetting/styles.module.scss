@@ -56,4 +56,10 @@
   display: flex;
   justify-content: center;
 }
+.input {
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
 
