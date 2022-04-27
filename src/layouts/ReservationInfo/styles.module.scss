@@ -3,11 +3,11 @@
 @import '../../styles/font.scss';
 
 .screen {
-  height: 100vh;
+  height: 100%;
   box-sizing: border-box;
 }
 .screenContent {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
