@@ -34,14 +34,11 @@ messaging.onBackgroundMessage(function (payload) {
     body: payload.notification.body,
     icon: '/logo192.png',
   };
-  click_action =
-    notificationTitle == '用餐時間到'
-      ? 'https://react-pwa-restaurant-23ljkveff-jennifer861025.vercel.app/checkout'
-      : 'https://react-pwa-restaurant-23ljkveff-jennifer861025.vercel.app/waiting';
   // click_action =
   //   notificationTitle == '用餐時間到'
-  //     ? 'http://localhost:3000/checkout'
-  //     : 'http://localhost:3000/waiting';
+  //     ? 'https://react-pwa-restaurant-23ljkveff-jennifer861025.vercel.app/checkout'
+  //     : 'https://react-pwa-restaurant-23ljkveff-jennifer861025.vercel.app/waiting';
+  click_action = click_action_Handler(notificationTitle);
   // console.log('click_action1:' + JSON.stringify(payload.data));
 
   // eslint-disable-next-line no-restricted-globals
@@ -50,6 +47,16 @@ messaging.onBackgroundMessage(function (payload) {
     notificationOptions,
   );
 });
+
+const click_action_Handler = (notificationTitle) => {
+  if (notificationTitle == '用餐時間到') {
+    return 'https://react-pwa-restaurant-23ljkveff-jennifer861025.vercel.app/checkout';
+  } else if (notificationTitle == '用餐最後30分鐘') {
+    return 'https://react-pwa-restaurant-23ljkveff-jennifer861025.vercel.app/order';
+  } else {
+    return 'https://react-pwa-restaurant-23ljkveff-jennifer861025.vercel.app/waiting';
+  }
+};
 
 // 監聽notifiction點擊事件
 self.addEventListener('notificationclick', function (event) {
