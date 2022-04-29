@@ -9,6 +9,7 @@ import habit from '../../assets/json/habit.json';
 import Loading from '../../components/Loading';
 import { StoreContext } from '../../store/reducer';
 import { setUserHabit, getUserHabit } from '../../store/action';
+import DoubleCheckModel from '../../components/DoubleCheckModel';
 
 const MealHabits = () => {
   const history = useHistory();
@@ -24,10 +25,15 @@ const MealHabits = () => {
   const [meatHabit, setMeatHabit] = useState(meatArray);
   const [seafoodHabit, setSeafoodHabit] = useState(seafoodArray);
   const [loadingFlag, setLoadingFlag] = useState(true);
+  const [doubleCheckShow, setDoubleCheckShow] = useState(false);
   const phone = localStorage.getItem('phone');
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setDoubleCheckShow(true);
+  };
+
+  const rightBtnHandler = async () => {
     setLoadingFlag(true);
     await setUserHabit(dispatch, {
       phone: phone,
@@ -111,6 +117,18 @@ const MealHabits = () => {
             <title>用餐偏好</title>
             <meta name="description" content="用餐偏好" />
           </Helmet>
+          <DoubleCheckModel
+            show={doubleCheckShow}
+            closeHandler={() => setDoubleCheckShow(false)}
+            modalTitle={'是否確定開始點餐'}
+            modalBody={
+              '若開始點餐後，點餐倒數時間將會開始計算，為了保障您的權益，可考慮是否要開始點餐'
+            }
+            leftBtnTitle={'取消'}
+            leftBtnHandler={() => setDoubleCheckShow(false)}
+            rightBtnTitle={'確定'}
+            rightBtnHandler={rightBtnHandler}
+          />
           <div className={styles.screen}>
             <NavigationBar title={'用餐偏好'} linkFlag={false} />
             <div className={styles.screenContent}>
