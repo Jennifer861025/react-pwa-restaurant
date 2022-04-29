@@ -138,7 +138,13 @@ const NoReserved = () => {
                     </button>
                   </div>
                 </div>
-                <Button type="submit" title={'送出'} marginTop={true}></Button>
+                <div className={styles.button}>
+                  <Button
+                    type="submit"
+                    title={'送出'}
+                    marginTop={true}
+                  ></Button>
+                </div>
               </form>
             </div>
           </div>

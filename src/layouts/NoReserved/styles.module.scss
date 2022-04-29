@@ -3,7 +3,7 @@
 @import '../../styles/font.scss';
 
 .screen {
-  height: 100%;
+  height: 100vh;
 }
 .screenContent {
   min-height: 100vh;
@@ -69,4 +69,7 @@
   justify-content: center;
   align-items: center;
   margin: 0px $cp-phone-section-spacing;
+}
+.button {
+  margin-bottom: $cp-phone-main-margin-top;
 }
