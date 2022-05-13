@@ -1,12 +1,14 @@
 import React, { Fragment, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import styles from './styles.module.scss';
-// import path from '../../utils/path';
+import path from '../../utils/path';
 import logo from '../../assets/image/logo5.png';
 import Button from '../../components/Button';
 import { deleteCoupon, setUserTotalPrice } from '../../store/action';
 
 const MealFinish = () => {
+  var history = useHistory();
   const phone = localStorage.getItem('phone');
   const historyId = localStorage.getItem('historyId');
   const totalPrice = localStorage.getItem('totalPrice');
@@ -29,6 +31,7 @@ const MealFinish = () => {
       historyId: historyId,
       totalPrice: totalPrice,
     });
+    history.push(path.bookingConfirm);
   };
 
   return (
